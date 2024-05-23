@@ -656,5 +656,211 @@ const products = [
       "apparel",
       "mens"
     ]
-  }
+  },
+  {
+    id: "bc2847e9-5323-403f-b7cf-57fde044a921",
+    image: "images/products/backpack-black-poliester.jpg",
+    name: "Backpack Sport Black Poliester",
+    rating: {
+      stars: 3.5,
+      count: 2900
+    },
+    priceCents: 2100,
+    keywords: [
+      "backpack",
+      "sport",
+      "black",
+      "poliester"
+    ]
+
+  },
+  {
+    id: "bc2847e9-5323-403f-b7cf-57fde0s4a955",
+    image: "images/products/umbrella-dark-green-unisex.jpg",
+    name: "Umbrella Unisex Dark Green",
+    rating: {
+      stars: 4.0,
+      count: 1500
+    },
+    priceCents: 1000,
+    keywords: [
+      "umbrella",
+      "dark",
+      "green",
+      "unisex",
+    ]
+    
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-57fde044a955",
+    image: "images/products/TANGCHAO-2-pieces-fabric-elastic-braided-belt.jpg",
+    name: "TANGCHAO 2 Pieces Fabric Belt, Stretch Belt, Elastic Braided Belt",
+    rating: {
+      stars: 4.0,
+      count: 1300
+    },
+    priceCents: 1100,
+    keywords: [
+      "belt",
+      "2 pieces",
+      "fabric",
+      "strach"
+    ]
+
+  },
+  {
+    id: "as2847e9-5323-403f-b7cf-57fde044a955",
+    image: "images/products/double-wall-designed-stainless-steel-bottle.jpg",
+    name: "Double Wall Designed Stainless Steel Bottle",
+    rating: {
+      stars: 3.5,
+      count: 900
+    },
+    priceCents: 1360,
+    keywords: [
+      "Double-wall",
+      "stainless",
+      "designed",
+      "hot-cold"
+    ]
+
+  },
+  {
+    id: "bc284ser9-5323-403f-b7cf-57fde044a955",
+    image: "images/products/super-sparrow-stainless-steel-bottle-with-btraw.jpg",
+    name: "Super Sparrow Stainless Steel Bottle with Straw",
+    rating: {
+      stars: 3.0,
+      count: 800
+    },
+    priceCents: 580,
+    keywords: [
+      "bottle",
+      "termo",
+      "stainless",
+      "with straw"
+    ]
+
+  },
+  {
+    id: "b22847e9-5323-403f-b7cf-57fde044a955",
+    image: "images/products/wireless-controller-for-PS4.jpg",
+    name: "Wireless Controller for PS4",
+    rating: {
+      stars: 4.0,
+      count: 1900
+    },
+    priceCents: 2765,
+    keywords: [
+      "controller",
+      "wireless",
+      "for PS",
+      "white-purple"
+    ]
+
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-57fde044a955",
+    image: "images/products/hobwo-go6-wireless-gaming-headset.jpg",
+    name: "NUBWO G06 Wireless Gaming Headset for PS5, PS4, PC",
+    rating: {
+      stars: 4.5,
+      count: 3100
+    },
+    priceCents: 5105,
+    keywords: [
+      "headset",
+      "wireless",
+      "for PS5, PS4, PC",
+      "black-orange"
+    ]
+
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-57fde044a955",
+    image: "images/products/DIWANGUS-teering-wheel-stand.jpg",
+    name: "DIWANGUS Steering Wheel Stand, Quick Assembly, Suitable for Logitech G923 G920 G29 G27 G25",
+    rating: {
+      stars: 4.0,
+      count: 1100
+    },
+    priceCents: 12037,
+    keywords: [
+      "steering wheel",
+      "DIWANGUS",
+      "quick assembly",
+      "for Logitech"
+    ]
+
+  },
+  // 
+
+  {
+    id: "bc2847e9-as23-403f-b7cf-57fdezx4a955",
+    image: "images/products/De-Longhi-espresso-inissia-EN-80-B-high-pressure-pump.jpg",
+    name: "De'Longhi Nespresso Inissia EN 80.B, high pressure pump",
+    rating: {
+      stars: 4.0,
+      count: 1125
+    },
+    priceCents: 16999,
+    keywords: [
+      "coffee machine",
+      "De'Longhi",
+      "high pressure pump",
+      "catridge"
+    ]
+
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-s7fde04sa955",
+    image: "images/products/Clatronic-KA-3733-1-cup-coffee-machine.jpg",
+    name: "Clatronic KA 3733 1 Cup Coffee Machine Including Double-Walled Thermal",
+    rating: {
+      stars: 4.5,
+      count: 800
+    },
+    priceCents: 19999,
+    keywords: [
+      "coffee machine",
+      "Clatronic KA 3733",
+      "double-walled",
+      "thermal"
+    ]
+
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-57fde044aassc",
+    image: "images/products/sunnychicc-4-sets-coffee-cooling.jpg",
+    name: "Sunnychicc 4 Sets Coffee Cooling Tool with Espresso Ball",
+    rating: {
+      stars: 4.0,
+      count: 1500
+    },
+    priceCents: 2270,
+    keywords: [
+      "sunnychicc",
+      "coffee",
+      "tools",
+      "4 sets"
+    ]
+
+  },
+  {
+    id: "bc2847e9-as23-403f-b7cf-57as33e044a955",
+    image: "images/products/haipink-kaffeebereiter-mit.jpg",
+    name: "Haipink Kaffeebereiter mit",
+    rating: {
+      stars: 3.0,
+      count: 1200
+    },
+    priceCents: 2020,
+    keywords: [
+      "haipink",
+      "kaffeebereiter",
+      "mit",
+      "pot"
+    ]
+
+  },
 ];
