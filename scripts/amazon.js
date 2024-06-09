@@ -1,7 +1,9 @@
-import { cart, addToCart } from './cart.js';
+import { addToCart } from './cart.js';
 import { products } from '../data/products.js';
 import { addToCartBtn } from './addToCartBtn.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
+// import { showCartQuantety } from './checkout.js'
+import { updateCartQuantity } from './updateCartQuantity.js';
 
 /* THE element from js with products list for DOM*/
 let productsHTML = '';
@@ -71,16 +73,9 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
     );
     const cuantetyValue = Number(propductCuantitySelectId.value);
 
-    function updateCartCuantety() {
-      let cartCuantety = 0;
-      cart.forEach((cartItem) => {
-        cartCuantety += cartItem.cuantety;
-      });
-      document.querySelector('.js-cart-cuantety').innerHTML = cartCuantety;
-    }
-
     addToCart(productId, cuantetyValue);
-    updateCartCuantety();
     addToCartBtn(productId);
+    updateCartQuantity();
   });
 });
+// updateCartQuantity();

@@ -2,9 +2,9 @@ import { products } from '../data/products.js';
 import { cart, removeFromCart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
+// Get an element id that was clicked and add it to the cart
 const htmlCartContainer = document.getElementById('order-summary-js');
 let orderSummaryHTML = '';
-
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
   let matchingProduct;
@@ -14,11 +14,9 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-  // console.log(matchingProduct)
+
   orderSummaryHTML += `
-  <div class="cart-item-container js-cart-item-container-${
-    matchingProduct.id
-  }">
+  <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -100,9 +98,22 @@ cart.forEach((cartItem) => {
 });
 htmlCartContainer.innerHTML = orderSummaryHTML;
 
+// Handeling remving some objcts or quantety
 document.querySelectorAll('.js-delete-link').forEach((link) => {
   link.addEventListener('click', () => {
     const productID = link.dataset.productId;
     removeFromCart(productID);
   });
 });
+
+// An obj and the fnc to add to acutual 'cartQuantety'
+const cartQuantety = document.querySelector('.js-return-to-home-link');
+
+export function showCartQuantety() {
+  let quantety = 0;
+  cart.forEach((cartItem) => {
+    quantety += cartItem.cuantety;
+  });
+  cartQuantety.innerHTML = quantety;
+}
+showCartQuantety();

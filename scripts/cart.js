@@ -1,5 +1,7 @@
+
 // check if any item from the list maches the click id and look for cuantity
 export let cart = JSON.parse(localStorage.getItem('cart'));
+
 
 if (!cart) {
   cart = [
@@ -8,9 +10,20 @@ if (!cart) {
   ];
 }
 
+
 function addToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+// Filter out any undefined or invalid items in the cart
+const validCartItems = cart.filter(item => {
+  if (!item || !item.productId) {
+    console.error('Invalid item encountered:', item);
+    localStorage.clear()
+    return false;
+  }
+  return true;
+});
 
 export function addToCart(productId, cuantetyValue) {
   let matchingItem;
@@ -19,31 +32,32 @@ export function addToCart(productId, cuantetyValue) {
       matchingItem = cartItem;
     }
   });
-
+  console.log(cart)
   if (matchingItem) {
+    // Update the quantity of the matching item
     matchingItem.cuantety += cuantetyValue;
   } else {
+    // Add a new item to the cart
     cart.push({
       productId: productId,
       cuantety: cuantetyValue,
     });
-    addToStorage();
   }
+  addToStorage();
 }
 
+// Removing from the cart an obj
 export function removeFromCart(productId) {
   const container = document.querySelector(
     `.js-cart-item-container-${productId}`
   );
   const newCart = [];
-
   cart.forEach((product) => {
     if (product.productId !== productId) {
       newCart.push(product);
     }
   });
   container.remove();
-
   cart = newCart;
   addToStorage();
 }
