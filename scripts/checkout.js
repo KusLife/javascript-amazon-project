@@ -1,10 +1,12 @@
 import { products } from '../data/products.js';
 import { cart, removeFromCart } from './cart.js';
+import { cartItemsPriceCaunter } from './checkoutSummary.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
 // Get an element id that was clicked and add it to the cart
 const htmlCartContainer = document.getElementById('order-summary-js');
 let orderSummaryHTML = '';
+// Looking for matching product and creating a div for choosen item 
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
   let matchingProduct;
@@ -103,17 +105,10 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
   link.addEventListener('click', () => {
     const productID = link.dataset.productId;
     removeFromCart(productID);
+    cartItemsPriceCaunter();
   });
 });
 
 // An obj and the fnc to add to acutual 'cartQuantety'
 const cartQuantety = document.querySelector('.js-return-to-home-link');
-
-export function showCartQuantety() {
-  let quantety = 0;
-  cart.forEach((cartItem) => {
-    quantety += cartItem.cuantety;
-  });
-  cartQuantety.innerHTML = quantety;
-}
-showCartQuantety();
+cartQuantety.innerHTML = cart.length;
