@@ -63,6 +63,17 @@ export function removeFromCart(productId) {
   addToStorage();
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   removeFromCart();
-// });
+// Incrising quantity of a product by one 
+export function updateProductQuantity(productId) {
+  const newCart = [];
+  cart.forEach((product) => {
+    if (product.productId !== productId) {
+      newCart.push(product);
+    } else if (product.productId === productId) {
+      product.cuantety++;
+      newCart.push(product);
+    } 
+  });
+  cart = newCart;
+  addToStorage();
+}
