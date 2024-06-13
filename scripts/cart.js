@@ -1,7 +1,5 @@
-
 // check if any item from the list maches the click id and look for cuantity
 export let cart = JSON.parse(localStorage.getItem('cart'));
-
 
 if (!cart) {
   cart = [
@@ -10,16 +8,15 @@ if (!cart) {
   ];
 }
 
-
 function addToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 // Filter out any undefined or invalid items in the cart
-const validCartItems = cart.filter(item => {
+const validCartItems = cart.filter((item) => {
   if (!item || !item.productId) {
     console.error('Invalid item encountered:', item);
-    localStorage.clear()
+    localStorage.clear();
     return false;
   }
   return true;
@@ -32,7 +29,7 @@ export function addToCart(productId, cuantetyValue) {
       matchingItem = cartItem;
     }
   });
-  console.log(cart)
+  // console.log(cart)
   if (matchingItem) {
     // Update the quantity of the matching item
     matchingItem.cuantety += cuantetyValue;
@@ -55,9 +52,17 @@ export function removeFromCart(productId) {
   cart.forEach((product) => {
     if (product.productId !== productId) {
       newCart.push(product);
+    } else if (product.productId === productId && product.cuantety > 1) {
+      product.cuantety--;
+      newCart.push(product);
+    } else {
+      container.remove();
     }
   });
-  container.remove();
   cart = newCart;
   addToStorage();
 }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   removeFromCart();
+// });

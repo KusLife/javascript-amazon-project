@@ -4,7 +4,7 @@ import { priceToDecmo } from './utils/priceConvertor.js';
 import { showCartQuantety } from './showCartQuantety.js';
 
 const paymentSummaryDom = document.querySelector('.js-payment-summary');
-
+// Variables acumulan the price and calculan all the numbers for summary
 export function cartItemsPriceCaunter() {
   let allItemsPrice = 0;
   let summaryNoTax = 0;
@@ -30,10 +30,6 @@ export function cartItemsPriceCaunter() {
   summaryWithTax = Number((summaryNoTax + tenPercent).toFixed(2));
   summaryTotal = Number((tenPercent + summaryWithShiping).toFixed(2));
   summaryWithShipingBeforTax = Number(summaryWithShiping.toFixed(2));
-  // console.log(Number(summaryWithShiping.toFixed(2)));
-  console.log(summaryNoTax);
-  console.log(summaryWithShipingBeforTax);
-  console.log(typeof summaryWithShiping);
 
   const orderSummaryHTML = `
 <div class="payment-summary-title">

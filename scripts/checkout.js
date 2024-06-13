@@ -6,17 +6,29 @@ import { priceToDecmo } from './utils/priceConvertor.js';
 // Get an element id that was clicked and add it to the cart
 const htmlCartContainer = document.getElementById('order-summary-js');
 let orderSummaryHTML = '';
-// Looking for matching product and creating a div for choosen item 
-cart.forEach((cartItem) => {
-  const productId = cartItem.productId;
-  let matchingProduct;
+// Looking for matching product and creating a div for choosen item
+function createItemContainer() {
+  cart.forEach((cartItem) => {
+    const productId = cartItem.productId;
+    let matchingProduct;
 
-  products.forEach((product) => {
-    if (product.id === productId) {
-      matchingProduct = product;
-    }
+    products.forEach((product) => {
+      if (product.id === productId) {
+        matchingProduct = product;
+      }
+    });
+    orderSummary(matchingProduct, cartItem);
+    console.log('rerid');
   });
+}
+// Look for a radio button which is "checked"
 
+// const seletedRadioBtn = document.querySelector(
+//   `input[name="delivery-option-${matchingProduct.id}"]:checked`
+// );
+
+// console.log(seletedRadioBtn);
+function orderSummary(matchingProduct, cartItem) {
   orderSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
@@ -36,7 +48,7 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${
+                    Quantity: <span class="quantity-label js-quantity-label">${
                       cartItem.cuantety
                     }</span>
                   </span>
@@ -97,8 +109,24 @@ cart.forEach((cartItem) => {
               </div>
             </div>
           </div>`;
-});
-htmlCartContainer.innerHTML = orderSummaryHTML;
+
+  htmlCartContainer.innerHTML = orderSummaryHTML;
+}
+
+createItemContainer();
+
+// Rerender quantity in html
+function deleteItemQuantityHTML(productID) {
+  const itemQuantityParent = document.querySelector(
+    `.js-cart-item-container-${productID}`
+  );
+  const newQuantity = itemQuantityParent.querySelector('.js-quantity-label');
+  cart.forEach((product) => {
+    if (product.productId === productID) {
+      newQuantity.innerText = product.cuantety;
+    }
+  });
+}
 
 // Handeling remving some objcts or quantety
 document.querySelectorAll('.js-delete-link').forEach((link) => {
@@ -106,9 +134,21 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     const productID = link.dataset.productId;
     removeFromCart(productID);
     cartItemsPriceCaunter();
+    checkOutQuantety();
+    deleteItemQuantityHTML(productID);
+    // orderSummary()
+    // createItemContainer()
   });
 });
 
 // An obj and the fnc to add to acutual 'cartQuantety'
-const cartQuantety = document.querySelector('.js-return-to-home-link');
-cartQuantety.innerHTML = cart.length;
+function checkOutQuantety() {
+  const checkOutQuantetyHTML =
+    cart.length > 1
+      ? cart.length + ' ' + 'products'
+      : cart.length + ' ' + 'product';
+  const cartQuantety = document.querySelector('.js-return-to-home-link');
+  cartQuantety.innerHTML = checkOutQuantetyHTML;
+}
+
+checkOutQuantety();
