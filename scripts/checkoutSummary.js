@@ -1,7 +1,7 @@
 import { cart } from './cart.js';
 import { products } from '../data/products.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
-import { showCartQuantety } from './showCartQuantety.js';
+import { showCartQuantety } from './updateCartQuantity.js';
 
 const paymentSummaryDom = document.querySelector('.js-payment-summary');
 // Variables acumulan the price and calculan all the numbers for summary

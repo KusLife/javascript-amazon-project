@@ -29,7 +29,6 @@ export function addToCart(productId, cuantetyValue) {
       matchingItem = cartItem;
     }
   });
-  // console.log(cart)
   if (matchingItem) {
     // Update the quantity of the matching item
     matchingItem.cuantety += cuantetyValue;
