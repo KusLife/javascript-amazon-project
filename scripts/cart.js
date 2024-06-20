@@ -3,8 +3,8 @@ export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if (!cart) {
   cart = [
-    { productId: '54e0eccd-8f36-462b-b68a-8182611d9add', cuantety: 3 },
-    { productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d', cuantety: 2 },
+    { productId: '54e0eccd-8f36-462b-b68a-8182611d9add', cuantety: 3, deliveryOptionId: 1},
+    { productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d', cuantety: 2, deliveryOptionId: 2},
   ];
 }
 
@@ -13,14 +13,14 @@ function addToStorage() {
 }
 
 // Filter out any undefined or invalid items in the cart
-const validCartItems = cart.filter((item) => {
-  if (!item || !item.productId) {
-    console.error('Invalid item encountered:', item);
-    localStorage.clear();
-    return false;
-  }
-  return true;
-});
+// const validCartItems = cart.filter((item) => {
+//   if (!item || !item.productId) {
+//     console.error('Invalid item encountered:', item);
+//     localStorage.clear();
+//     return false;
+//   }
+//   return true;
+// });
 
 export function addToCart(productId, cuantetyValue) {
   let matchingItem;
@@ -37,6 +37,7 @@ export function addToCart(productId, cuantetyValue) {
     cart.push({
       productId: productId,
       cuantety: cuantetyValue,
+      deliveryOptionId: 1
     });
   }
   addToStorage();

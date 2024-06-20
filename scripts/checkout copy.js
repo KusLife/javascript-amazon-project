@@ -1,4 +1,4 @@
-import { products, deliveryOptions } from '../data/products.js';
+import { products } from '../data/products.js';
 import { cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -25,22 +25,13 @@ function createItemContainer() {
     orderSummary(matchingProduct, cartItem);
   });
 }
-
 // Look for a radio button which is "checked"
-function orderSummary(matchingProduct, cartItem) {
-  let deliveryDays;
-  deliveryOptions.forEach((option) => {
-    if (option.id === cartItem.deliveryOptionId) {
-      deliveryDays = option.deliveryDays;
-    }
-    return deliveryDays
-    
-  });
 
+function orderSummary(matchingProduct, cartItem) {
   orderSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
-              Delivery date: ${deliveryDateLogic(deliveryDays)}
+              Delivery date: Tuesday, June 21
             </div>
 
             <div class="cart-item-details-grid">
@@ -74,9 +65,74 @@ function orderSummary(matchingProduct, cartItem) {
               </div>
 
               <from class="delivery-options">
-              ${deliveryOptionsLogic(matchingProduct.id, cartItem)}
-              </from>
 
+               <div class="delivery-options-title">
+                  Choose a delivery option:
+                </div>
+                <div class="delivery-option">
+                  <input type="radio" checked
+                    class="delivery-option-input"
+                    name="delivery-option-${matchingProduct.id}"
+                    value="0"
+                    aria-label="FREE Shipping">
+                  <div>
+                    <div class="delivery-option-date">
+                      Tuesday, June 21
+                    </div>
+                    <div class="delivery-option-price">
+                      FREE Shipping
+
+                <div class="delivery-options-title">
+                  Choose a delivery option:
+                </div>
+                <div class="delivery-option">
+                  <input type="radio" checked
+                    class="delivery-option-input"
+                    name="delivery-option-${matchingProduct.id}"
+                    value="0"
+                    aria-label="FREE Shipping">
+                  <div>
+                    <div class="delivery-option-date">
+                      Tuesday, June 21
+                    </div>
+                    <div class="delivery-option-price">
+                      FREE Shipping
+                    </div>
+                  </div>
+                </div>
+
+                <div class="delivery-option">
+                  <input type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-${
+                      matchingProduct.id
+                    }" value="499" aria-label="One Week Shipping">
+                  <div>
+                    <div class="delivery-option-date">
+                      Wednesday, June 15
+                    </div>
+                    <div class="delivery-option-price">
+                      $4.99 - One Week Shipping
+                    </div>
+                  </div>
+                </div>
+                <div class="delivery-option">
+                  <input type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-${matchingProduct.id}"
+                    value="999"
+                    aria-label="Express Delivery">
+                  <div>
+                    <div class="delivery-option-date">
+                      Monday, June 13
+                    </div>
+                    <div class="delivery-option-price">
+                      $9.99 - Express Delivery
+                    </div>
+                  </div>
+                </div> 
+                
+              </from>
             </div>
           </div>`;
 
@@ -85,45 +141,32 @@ function orderSummary(matchingProduct, cartItem) {
 
 createItemContainer();
 
-// Get a numbres of days and show when the item arive
-function deliveryDateLogic(deliveryDays) {
-  const today = dayjs();
-  const deliveryDate = today.add(deliveryDays, 'days').format('dddd, MMMM d');
-  return deliveryDate;
-}
+function deliveryOptionsLogic() {
+  let deliveryOptionsHTML;
 
-// Delivery container created by passin data and anvocking the fnc 
-function deliveryOptionsLogic(matchingProductId, cartItem) {
-  let deliveryOptionsHTML = '';
-  deliveryOptions.forEach((option) => {
-    const shippingPrice = priceToDecmo(option.priceCents);
-
-    const checked = option.id === cartItem.deliveryOptionId ? 'checked' : '';
-    deliveryOptionsHTML += `
+  deliveryOptionsHTML += `
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
                 <div class="delivery-option">
-                  <input type="radio" ${checked}
+                  <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProductId}"
-                    value="${option.priceCents}"
-                    aria-label="${option.name}">
+                    name="delivery-option-${matchingProduct.id}"
+                    value="0"
+                    aria-label="FREE Shipping">
                   <div>
                     <div class="delivery-option-date">
-                      ${deliveryDateLogic(option.deliveryDays)}
+                      Tuesday, June 21
                     </div>
                     <div class="delivery-option-price">
-                      $${shippingPrice} ${option.name}
+                      FREE Shipping
                     </div>
                   </div>
                 </div>
   `;
-  });
-  return deliveryOptionsHTML;
-}
 
-// document.querySelector('.delivery-options').innerHTML =
+  document.querySelector('.delivery-options').innerHTML = deliveryOptionsHTML;
+}
 
 // Delivery info from radio btns seting to an arrey and show it in HTML
 // let deliveryOptions = JSON.parse(localStorage.getItem('deliveryOptions'));
