@@ -1,5 +1,5 @@
 import { products, deliveryOptions } from '../data/products.js';
-import { cart } from './cart.js';
+import { apdateDeliveryOption, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
@@ -33,8 +33,7 @@ function orderSummary(matchingProduct, cartItem) {
     if (option.id === cartItem.deliveryOptionId) {
       deliveryDays = option.deliveryDays;
     }
-    return deliveryDays
-    
+    return deliveryDays;
   });
 
   orderSummaryHTML += `
@@ -92,19 +91,21 @@ function deliveryDateLogic(deliveryDays) {
   return deliveryDate;
 }
 
-// Delivery container created by passin data and anvocking the fnc 
+// Delivery container created by passin data and anvocking the fnc
 function deliveryOptionsLogic(matchingProductId, cartItem) {
   let deliveryOptionsHTML = '';
   deliveryOptions.forEach((option) => {
     const shippingPrice = priceToDecmo(option.priceCents);
 
-    const checked = option.id === cartItem.deliveryOptionId ? 'checked' : '';
+    const isChecked = option.id === cartItem.deliveryOptionId ? 'checked' : '';
     deliveryOptionsHTML += `
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                <div class="delivery-option">
-                  <input type="radio" ${checked}
+                <div class="delivery-option js-delivery-option"
+                data-product-id="${matchingProductId}"
+                data-delivery-id="${option.id}">
+                  <input type="radio" ${isChecked}
                     class="delivery-option-input"
                     name="delivery-option-${matchingProductId}"
                     value="${option.priceCents}"
@@ -122,6 +123,15 @@ function deliveryOptionsLogic(matchingProductId, cartItem) {
   });
   return deliveryOptionsHTML;
 }
+
+
+document.querySelectorAll('.js-delivery-option').forEach((radio) => {
+  radio.addEventListener('click', () => {
+    const { deliveryId, productId } = radio.dataset;
+    console.log(cart);
+    apdateDeliveryOption(productId, deliveryId)
+  });
+});
 
 // document.querySelector('.delivery-options').innerHTML =
 

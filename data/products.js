@@ -1,18 +1,18 @@
 export const deliveryOptions = [
   {
-    id: 1,
+    id: '1',
     deliveryDays: 15,
     priceCents: 0,
     name: ' FREE Shipping',
   },
   {
-    id: 2,
+    id: '2',
     deliveryDays: 7,
     priceCents: 499,
     name: '- One Week Shipping',
   },
   {
-    id: 3,
+    id: '3',
     deliveryDays: 1,
     priceCents: 999,
     name: '- Express Delivery',
