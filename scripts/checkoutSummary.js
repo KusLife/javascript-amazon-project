@@ -1,5 +1,5 @@
 import { cart } from './cart.js';
-import { products } from '../data/products.js';
+import { deliveryOptions, products } from '../data/products.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { showCartQuantety } from './updateCartQuantity.js';
 
@@ -9,7 +9,8 @@ export function cartItemsPriceCaunter() {
   let allItemsPrice = 0;
   let summaryNoTax = 0;
   let summaryWithTax = 0;
-  let summaryWithShiping = 4.99;
+  let summaryWithShiping = 0;
+  let summaryShiping = 0;
   let summaryWithShipingBeforTax = 0;
   let summaryTotal = 0;
 
@@ -24,9 +25,18 @@ export function cartItemsPriceCaunter() {
       }
     });
   });
+  // Calculate cart items shiping price
+  cart.forEach((cartProduct) => {
+    deliveryOptions.forEach((option) => {
+      if (cartProduct.deliveryOptionId === option.id) {
+        summaryShiping += Number(priceToDecmo(option.priceCents));
+      }
+    });
+  });
+
   summaryNoTax = Number(priceToDecmo(allItemsPrice));
   let tenPercent = Number((summaryNoTax * 0.1).toFixed(2));
-  summaryWithShiping += summaryNoTax;
+  summaryWithShiping = summaryNoTax + summaryShiping;
   summaryWithTax = Number((summaryNoTax + tenPercent).toFixed(2));
   summaryTotal = Number((tenPercent + summaryWithShiping).toFixed(2));
   summaryWithShipingBeforTax = Number(summaryWithShiping.toFixed(2));
@@ -43,7 +53,7 @@ export function cartItemsPriceCaunter() {
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$4.99</div>
+            <div class="payment-summary-money">$${summaryShiping}</div>
           </div>
 
           <div class="payment-summary-row subtotal-row js-subtotal-row">

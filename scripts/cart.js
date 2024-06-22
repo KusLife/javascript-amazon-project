@@ -4,7 +4,7 @@ export let cart = JSON.parse(localStorage.getItem('cart'));
 if (!cart) {
   cart = [
     {
-      productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
+      s: '54e0eccd-8f36-462b-b68a-8182611d9add',
       cuantety: 3,
       deliveryOptionId: '1',
     },

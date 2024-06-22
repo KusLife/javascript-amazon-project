@@ -3,6 +3,7 @@ import { updateDeliveryOption, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
+import { cartItemsPriceCaunter } from './checkoutSummary.js';
 
 function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
@@ -116,27 +117,15 @@ function rerenderPage() {
     return deliveryOptionsHTML;
   }
 
-  const deliverySateHTML = document.querySelector('.js-delivery-date');
-
-  function renderdeliverySateHTML(deliveryOptionId) {
-    let deliveryDays;
-    deliveryOptions.forEach((option) => {
-      if (deliveryOptionId === option.id) {
-        deliveryDays = option.deliveryDays;
-      }
-      // console.log(deliveryDays)
-    });
-    deliverySateHTML.innerHTML = `Delivery date: ${deliveryDateLogic(
-      deliveryDays
-    )}`;
-  }
   document.querySelectorAll('.js-delivery-option').forEach((radio) => {
-    radio.addEventListener('click', () => {
+    radio.addEventListener('change', () => {
       const { deliveryId, productId } = radio.dataset;
       updateDeliveryOption(productId, deliveryId);
       rerenderPage()
     });
   });
+  // Rerender delivery summary
+  cartItemsPriceCaunter()
   // Readd EventListeners to update & delite btns
   updateQuantityAddEvList()
 }

@@ -3,7 +3,7 @@ export const deliveryOptions = [
     id: '1',
     deliveryDays: 15,
     priceCents: 0,
-    name: ' FREE Shipping',
+    name: '- FREE Shipping',
   },
   {
     id: '2',
