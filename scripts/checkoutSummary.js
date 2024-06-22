@@ -70,10 +70,12 @@ export function cartItemsPriceCaunter() {
             <div>Order total:</div>
             <div class="payment-summary-money">$${summaryTotal}</div>
           </div>
-
-          <button class="place-order-button button-primary">
-            Place your order
-          </button>
+          <a href="orders.html" class="place-order-link">
+            <button class="place-order-button button-primary 
+             js-place-order-button">
+              Place your order
+            </button>
+          </a>
 `;
 
   paymentSummaryDom.innerHTML = orderSummaryHTML;

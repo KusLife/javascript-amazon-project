@@ -17,25 +17,25 @@ export function rerenderItemQuantityHTML(productID) {
 // Rerender and update product quantety in the cart
 // Reatach Listeners cuz they slideoff each rerender of html
 export function updateQuantityAddEvList() {
-// Handeling updating some objcts or quantety
-document.querySelectorAll('.js-update-quantity-link').forEach((link) => {
-  link.addEventListener('click', () => {
-    const productID = link.dataset.productId;
-    updateProductQuantity(productID);
-    cartItemsPriceCaunter();
-    rerenderItemQuantityHTML(productID);
+  // Handeling updating some objcts or quantety
+  document.querySelectorAll('.js-update-quantity-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const productID = link.dataset.productId;
+      updateProductQuantity(productID);
+      cartItemsPriceCaunter();
+      rerenderItemQuantityHTML(productID);
+    });
   });
-});
-// Handeling removing some objcts or quantety
-document.querySelectorAll('.js-delete-link').forEach((link) => {
-  link.addEventListener('click', () => {
-    const productID = link.dataset.productId;
-    removeFromCart(productID);
-    cartItemsPriceCaunter();
-    checkOutQuantety();
-    rerenderItemQuantityHTML(productID);
+  // Handeling removing some objcts or quantety
+  document.querySelectorAll('.js-delete-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const productID = link.dataset.productId;
+      removeFromCart(productID);
+      cartItemsPriceCaunter();
+      checkOutQuantety();
+      rerenderItemQuantityHTML(productID);
+    });
   });
-});
 }
 // An obj and the fnc to add to acutual 'cartQuantety'
 function checkOutQuantety() {

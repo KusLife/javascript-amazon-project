@@ -121,12 +121,12 @@ function rerenderPage() {
     radio.addEventListener('change', () => {
       const { deliveryId, productId } = radio.dataset;
       updateDeliveryOption(productId, deliveryId);
-      rerenderPage()
+      rerenderPage();
     });
   });
   // Rerender delivery summary
-  cartItemsPriceCaunter()
+  cartItemsPriceCaunter();
   // Readd EventListeners to update & delite btns
-  updateQuantityAddEvList()
+  updateQuantityAddEvList();
 }
-rerenderPage()
+rerenderPage();
