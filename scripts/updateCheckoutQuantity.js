@@ -13,6 +13,10 @@ export function rerenderItemQuantityHTML(productID) {
     }
   });
 }
+
+// Rerender and update product quantety in the cart
+// Reatach Listeners cuz they slideoff each rerender of html
+export function updateQuantityAddEvList() {
 // Handeling updating some objcts or quantety
 document.querySelectorAll('.js-update-quantity-link').forEach((link) => {
   link.addEventListener('click', () => {
@@ -32,6 +36,7 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     rerenderItemQuantityHTML(productID);
   });
 });
+}
 // An obj and the fnc to add to acutual 'cartQuantety'
 function checkOutQuantety() {
   const checkOutQuantetyHTML =
