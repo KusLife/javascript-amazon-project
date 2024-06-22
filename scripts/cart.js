@@ -45,7 +45,7 @@ export function addToCart(productId, cuantetyValue) {
     cart.push({
       productId: productId,
       cuantety: cuantetyValue,
-      deliveryOptionId: 1,
+      deliveryOptionId: '1',
     });
   }
   addToStorage();
@@ -86,7 +86,7 @@ export function updateProductQuantity(productId) {
   addToStorage();
 }
 
-export function apdateDeliveryOption(productId, deliveryOptionId) {
+export function updateDeliveryOption(productId, deliveryOptionId) {
   let matchingItem;
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {

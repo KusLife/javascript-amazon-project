@@ -1,12 +1,8 @@
 import { products, deliveryOptions } from '../data/products.js';
-import { apdateDeliveryOption, cart } from './cart.js';
+import { updateDeliveryOption, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { deliveryDateLogic } from './utils/dateDelivery.js';
 
-const today = dayjs();
-const deliveryDate = today.add(7, 'days');
-
-console.log(deliveryDate.format('dddd, MMMM D'));
 
 // Get an element id that was clicked and add it to the cart
 const htmlCartContainer = document.getElementById('order-summary-js');
@@ -33,8 +29,10 @@ function orderSummary(matchingProduct, cartItem) {
     if (option.id === cartItem.deliveryOptionId) {
       deliveryDays = option.deliveryDays;
     }
+    console.log(option.id ,cartItem.deliveryOptionId)
     return deliveryDays;
   });
+
 
   orderSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -85,11 +83,13 @@ function orderSummary(matchingProduct, cartItem) {
 createItemContainer();
 
 // Get a numbres of days and show when the item arive
-function deliveryDateLogic(deliveryDays) {
-  const today = dayjs();
-  const deliveryDate = today.add(deliveryDays, 'days').format('dddd, MMMM d');
-  return deliveryDate;
-}
+// function deliveryDateLogic(deliveryDays) {
+//   const today = dayjs();
+//   const deliveryDate = today.add(deliveryDays, 'days').format('dddd, MMMM d');
+//   console.log(deliveryDays)
+//   // debugger
+//   return deliveryDate;
+// }
 
 // Delivery container created by passin data and anvocking the fnc
 function deliveryOptionsLogic(matchingProductId, cartItem) {
@@ -129,7 +129,7 @@ document.querySelectorAll('.js-delivery-option').forEach((radio) => {
   radio.addEventListener('click', () => {
     const { deliveryId, productId } = radio.dataset;
     console.log(cart);
-    apdateDeliveryOption(productId, deliveryId)
+    updateDeliveryOption(productId, deliveryId)
   });
 });
 
