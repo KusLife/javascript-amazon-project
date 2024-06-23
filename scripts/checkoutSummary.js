@@ -70,14 +70,28 @@ export function cartItemsPriceCaunter() {
             <div>Order total:</div>
             <div class="payment-summary-money">$${summaryTotal}</div>
           </div>
-          <a href="orders.html" class="place-order-link">
+          
             <button class="place-order-button button-primary 
              js-place-order-button">
               Place your order
             </button>
-          </a>
+          
 `;
 
   paymentSummaryDom.innerHTML = orderSummaryHTML;
+  document
+    .querySelector('.js-place-order-button')
+    .addEventListener('click', () => {
+      console.log('order');
+    });
 }
 cartItemsPriceCaunter();
+
+// <a href="orders.html" class="place-order-link">
+//   <button
+//     class="place-order-button button-primary
+//              js-place-order-button"
+//   >
+//     Place your order
+//   </button>
+// </a>;

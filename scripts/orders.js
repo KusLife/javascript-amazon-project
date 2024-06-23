@@ -1,15 +1,13 @@
 import ordersData from '../data/ordersData.js';
+import { products } from '../data/products.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
 const ordersHTML = document.querySelector('.js-main-orders');
 
+// Add main info about the order
 function renderOrderConteiner() {
   let orderConteinerHTML = '';
-  ordersData.forEach((ordersArr) => {
-
-
-
-
+  ordersData.forEach((orderContainer) => {
 
     orderConteinerHTML += `
         <div class="order-container">
@@ -18,34 +16,61 @@ function renderOrderConteiner() {
             <div class="order-header-left-section">
               <div class="order-date">
                 <div class="order-header-label">Order Placed:</div>
-                <div>${ordersArr.orderPlaced}</div>
+                <div>${orderContainer.orderPlaced}</div>
               </div>
               <div class="order-total">
                 <div class="order-header-label">Total:</div>
-                <div>$${priceToDecmo(ordersArr.TotalPrice)}</div>
+                <div>$${priceToDecmo(orderContainer.TotalPrice)}</div>
               </div>
             </div>
 
             <div class="order-header-right-section">
               <div class="order-header-label">Order ID:</div>
-              <div>${ordersArr.orderID}</div>
+              <div>${orderContainer.orderID}</div>
             </div>
           </div>
 
           <div class="order-details-grid">
-            <div class="product-image-container">
-              <img src="images/products/athletic-cotton-socks-6-pairs.jpg">
+            ${orderDeteils(orderContainer.itemsCart)}
+          </div>
+
+        </div>
+    `;
+  });
+  return orderConteinerHTML;
+}
+
+function orderDeteils(orderItems) {
+  let orderDeteilsHTML = '';
+  orderItems.forEach((orderItem) => {
+    let orderItemImg = '';
+    let orderItemName = '';
+    let arrivingDate = '';
+    let quantety = '';
+
+    products.forEach((product) => {
+      if (product.id === orderItem.itemID) {
+        orderItemImg = product.image;
+        orderItemName = product.name;
+      }
+    });
+    arrivingDate = orderItem.arrivingDate;
+    quantety = orderItem.quantety;
+
+    orderDeteilsHTML += `
+      <div class="product-image-container">
+              <img src="${orderItemImg}">
             </div>
 
             <div class="product-details">
               <div class="product-name">
-                Black and Gray Athletic Cotton Socks - 6 Pairs
+                ${orderItemName}
               </div>
               <div class="product-delivery-date">
-                Arriving on: August 15
+                Arriving on: ${arrivingDate}
               </div>
               <div class="product-quantity">
-                Quantity: 1
+                Quantity: ${quantety}
               </div>
               <button class="buy-again-button button-primary">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
@@ -59,149 +84,20 @@ function renderOrderConteiner() {
                   Track package
                 </button>
               </a>
-            </div>
-
-        </div>
-    `
-    return orderConteinerHTML
+            </div>`;
   });
-}
 
+  return orderDeteilsHTML;
+}
+// The grid of the page
 const html = `
 <div class="page-title">Your Orders</div>
 
       <div class="orders-grid">
-        <div class="order-container">
-          
-          <div class="order-header">
-            <div class="order-header-left-section">
-              <div class="order-date">
-                <div class="order-header-label">Order Placed:</div>
-                <div>August 12</div>
-              </div>
-              <div class="order-total">
-                <div class="order-header-label">Total:</div>
-                <div>$35.06</div>
-              </div>
-            </div>
-
-            <div class="order-header-right-section">
-              <div class="order-header-label">Order ID:</div>
-              <div>27cba69d-4c3d-4098-b42d-ac7fa62b7664</div>
-            </div>
-          </div>
-
-          <div class="order-details-grid">
-            <div class="product-image-container">
-              <img src="images/products/athletic-cotton-socks-6-pairs.jpg">
-            </div>
-
-            <div class="product-details">
-              <div class="product-name">
-                Black and Gray Athletic Cotton Socks - 6 Pairs
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: August 15
-              </div>
-              <div class="product-quantity">
-                Quantity: 1
-              </div>
-              <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
-            </div>
-
-            <div class="product-image-container">
-              <img src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg">
-            </div>
-
-            <div class="product-details">
-              <div class="product-name">
-                Adults Plain Cotton T-Shirt - 2 Pack
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: August 19
-              </div>
-              <div class="product-quantity">
-                Quantity: 2
-              </div>
-              <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="order-container">
-
-          <div class="order-header">
-            <div class="order-header-left-section">
-              <div class="order-date">
-                <div class="order-header-label">Order Placed:</div>
-                <div>June 10</div>
-              </div>
-              <div class="order-total">
-                <div class="order-header-label">Total:</div>
-                <div>$41.90</div>
-              </div>
-            </div>
-
-            <div class="order-header-right-section">
-              <div class="order-header-label">Order ID:</div>
-              <div>b6b6c212-d30e-4d4a-805d-90b52ce6b37d</div>
-            </div>
-          </div>
-
-          <div class="order-details-grid">
-            <div class="product-image-container">
-              <img src="images/products/intermediate-composite-basketball.jpg">
-            </div>
-
-            <div class="product-details">
-              <div class="product-name">
-                Intermediate Size Basketball
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: June 17
-              </div>
-              <div class="product-quantity">
-                Quantity: 2
-              </div>
-              <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
+        ${renderOrderConteiner()}
       </div>
 
 `;
 
+// Finely set complite container to html
 ordersHTML.innerHTML = html;
