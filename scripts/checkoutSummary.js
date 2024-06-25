@@ -2,6 +2,7 @@ import { cart } from './cart.js';
 import { deliveryOptions, products } from '../data/products.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { showCartQuantety } from './updateCartQuantity.js';
+import { placeOrder } from './checkoutOrder.js';
 
 const paymentSummaryDom = document.querySelector('.js-payment-summary');
 // Variables acumulan the price and calculan all the numbers for summary
@@ -42,7 +43,7 @@ export function cartItemsPriceCaunter() {
   summaryWithShipingBeforTax = Number(summaryWithShiping.toFixed(2));
 
   const orderSummaryHTML = `
-<div class="payment-summary-title">
+  <div class="payment-summary-title">
             Order Summary
           </div>
 
@@ -71,27 +72,40 @@ export function cartItemsPriceCaunter() {
             <div class="payment-summary-money">$${summaryTotal}</div>
           </div>
           
-            <button class="place-order-button button-primary 
+
+         <button class="place-order-button button-primary 
              js-place-order-button">
               Place your order
-            </button>
+         </button>
           
-`;
+  `;
 
   paymentSummaryDom.innerHTML = orderSummaryHTML;
   document
     .querySelector('.js-place-order-button')
     .addEventListener('click', () => {
-      console.log('order');
+      placeOrder(summaryTotal)
+      // fnc removeTheCart()
     });
 }
 cartItemsPriceCaunter();
 
-// <a href="orders.html" class="place-order-link">
-//   <button
-//     class="place-order-button button-primary
-//              js-place-order-button"
-//   >
-//     Place your order
-//   </button>
-// </a>;
+
+
+/*
+   <button class="place-order-button button-primary 
+             js-place-order-button">
+              Place your order
+            </button>
+  
+
+    <a href="orders.html" class="place-order-link">
+      <button
+        class="place-order-button button-primary
+                js-place-order-button"
+      >
+        Place your order
+      </button>
+    </a>;
+
+*/

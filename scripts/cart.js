@@ -4,7 +4,7 @@ export let cart = JSON.parse(localStorage.getItem('cart'));
 if (!cart) {
   cart = [
     {
-      s: '54e0eccd-8f36-462b-b68a-8182611d9add',
+      productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
       cuantety: 3,
       deliveryOptionId: '1',
     },
@@ -20,15 +20,15 @@ function addToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Filter out any undefined or invalid items in the cart
-// const validCartItems = cart.filter((item) => {
-//   if (!item || !item.productId) {
-//     console.error('Invalid item encountered:', item);
-//     localStorage.clear();
-//     return false;
-//   }
-//   return true;
-// });
+/* Filter out any undefined or invalid items in the cart
+ const validCartItems = cart.filter((item) => {
+   if (!item || !item.productId) {
+     console.error('Invalid item encountered:', item);
+     localStorage.clear();
+     return false;
+   }
+   return true;
+ }); */
 
 export function addToCart(productId, cuantetyValue) {
   let matchingItem;

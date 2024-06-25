@@ -116,7 +116,7 @@ function rerenderPage() {
     });
     return deliveryOptionsHTML;
   }
-
+  // Radio btns listeners get a Delivery option
   document.querySelectorAll('.js-delivery-option').forEach((radio) => {
     radio.addEventListener('change', () => {
       const { deliveryId, productId } = radio.dataset;
