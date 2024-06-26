@@ -7,6 +7,7 @@ export function updateCartQuantity() {
   });
   document.querySelector('.js-cart-cuantety').innerHTML = cartCuantety;
 }
+
 export function showCartQuantety() {
   let quantety = 0;
   cart.forEach((cartItem) => {

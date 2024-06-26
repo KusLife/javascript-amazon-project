@@ -1,5 +1,6 @@
 import ordersData from '../data/ordersData.js';
 import { products } from '../data/products.js';
+import { showCartQuantety } from './updateCartQuantity.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
 const ordersHTML = document.querySelector('.js-main-orders');
@@ -8,7 +9,6 @@ const ordersHTML = document.querySelector('.js-main-orders');
 function renderOrderConteiner() {
   let orderConteinerHTML = '';
   ordersData.forEach((orderContainer) => {
-
     orderConteinerHTML += `
         <div class="order-container">
           
@@ -20,7 +20,7 @@ function renderOrderConteiner() {
               </div>
               <div class="order-total">
                 <div class="order-header-label">Total:</div>
-                <div>$${priceToDecmo(orderContainer.TotalPrice)}</div>
+                <div>$${orderContainer.TotalPrice}</div>
               </div>
             </div>
 
@@ -36,6 +36,7 @@ function renderOrderConteiner() {
 
         </div>
     `;
+    console.log(orderContainer);
   });
   return orderConteinerHTML;
 }
@@ -89,15 +90,27 @@ function orderDeteils(orderItems) {
 
   return orderDeteilsHTML;
 }
+
+// Show number of orders
+function numbersOfOrders() {
+  let orderQuantity;
+  orderQuantity = ordersData.length;
+  return orderQuantity;
+}
+
 // The grid of the page
 const html = `
-<div class="page-title">Your Orders</div>
-
+<div class="page-title">Your Orders: ${numbersOfOrders()} </div>
       <div class="orders-grid">
         ${renderOrderConteiner()}
       </div>
-
 `;
 
 // Finely set complite container to html
 ordersHTML.innerHTML = html;
+// Show cart quantity
+function showOrderCartQuantety() {
+  document.querySelector('.js-orders-cart-quantity').innerHTML =
+    showCartQuantety();
+}
+showOrderCartQuantety();

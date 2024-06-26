@@ -80,17 +80,29 @@ export function cartItemsPriceCaunter() {
           
   `;
 
+  /* Add eventListener and say that cart is ampty, add red color
+  but with products we place and order and navigate to the 'order' page,
+  and removing the 'cart' from 'localStorage'
+  */
   paymentSummaryDom.innerHTML = orderSummaryHTML;
-  document
-    .querySelector('.js-place-order-button')
-    .addEventListener('click', () => {
-      placeOrder(summaryTotal)
-      // fnc removeTheCart()
+  const placeOrderButton = document
+    .querySelector('.js-place-order-button');
+
+    placeOrderButton.addEventListener('click', () => {
+
+      if (cart.length === 0) {
+        placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!'
+        placeOrderButton.classList.add('js-place-order-button-red')
+      } else if (cart.length > 0) {
+        placeOrder(summaryTotal)
+        window.location.href = 'orders.html'
+      }
+      
     });
 }
 cartItemsPriceCaunter();
 
-
+// function 
 
 /*
    <button class="place-order-button button-primary 

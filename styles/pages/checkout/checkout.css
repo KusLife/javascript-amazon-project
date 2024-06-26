@@ -37,6 +37,12 @@
   top: 10%;
 }
 
+.js-place-order-button-red {
+  font-weight: 500;
+  color: brown;
+}
+
+
 @media (max-width: 1000px) {
   .main {
     max-width: 500px;
