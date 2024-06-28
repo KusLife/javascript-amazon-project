@@ -4,6 +4,7 @@ import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
+import rerenderCartAddsSlide from './sladerContainer.js';
 
 function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
@@ -130,3 +131,4 @@ function rerenderPage() {
   updateQuantityAddEvList();
 }
 rerenderPage();
+rerenderCartAddsSlide()

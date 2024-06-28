@@ -1,7 +1,6 @@
 import ordersData from '../data/ordersData.js';
 import { products } from '../data/products.js';
 import { showCartQuantety } from './updateCartQuantity.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
 
 const ordersHTML = document.querySelector('.js-main-orders');
 
@@ -36,7 +35,6 @@ function renderOrderConteiner() {
 
         </div>
     `;
-    console.log(orderContainer);
   });
   return orderConteinerHTML;
 }
