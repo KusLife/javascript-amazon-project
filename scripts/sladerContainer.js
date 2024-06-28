@@ -37,6 +37,7 @@ function rerenderCartAddsSlide() {
   sladerContainer.innerHTML = html;
   const swiper = new Swiper('.swiper', {
     // Optional parameters
+    parallax:true,
     direction: 'horizontal',
     loop: true,
     initialSlide: 4,

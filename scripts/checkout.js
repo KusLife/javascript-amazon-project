@@ -130,5 +130,7 @@ function rerenderPage() {
   // Readd EventListeners to update & delite btns
   updateQuantityAddEvList();
 }
-rerenderPage();
-rerenderCartAddsSlide()
+;
+cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage()
+
+// rerenderPage()
