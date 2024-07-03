@@ -1,22 +1,28 @@
+export let cart;
+
+loadFromStorage();
+
 // check if any item from the list maches the click id and look for cuantity
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export function loadFromStorage() {
+  cart = JSON.parse(localStorage.getItem('cart'));
 
-if (!cart) {
-  cart = [];
-  // cart = [
-  //   {
-  //     productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
-  //     cuantety: 3,
-  //     deliveryOptionId: '1',
-  //   },
-  //   {
-  //     productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d',
-  //     cuantety: 2,
-  //     deliveryOptionId: '2',
-  //   },
-  // ];
+  if (!cart) {
+    cart = [];
+    // cart = [
+    //   {
+    //     productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
+    //     cuantety: 3,
+    //     deliveryOptionId: '1',
+    //   },
+    //   {
+    //     productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d',
+    //     cuantety: 2,
+    //     deliveryOptionId: '2',
+    //   },
+    // ];
 
-  // alert('No cart items yet')
+    // alert('No cart items yet')
+  }
 }
 
 function addToStorage() {

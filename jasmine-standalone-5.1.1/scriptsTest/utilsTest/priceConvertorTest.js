@@ -1,4 +1,4 @@
-import { priceToDecmo } from '../scripts/utils/priceConvertor.js';
+import { priceToDecmo } from '../../../scripts/utils/priceConvertor.js';
 
 describe('TEST SUIT: CALCULATE PRICE TO DECMO', () => {
   it('tets 2095 to 20.95', () => {
