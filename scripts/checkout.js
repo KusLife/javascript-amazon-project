@@ -4,9 +4,9 @@ import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
-import rerenderCartAddsSlide from './sladerContainer.js';
+import rerenderCartAddsSlide from './utils/sladerContainer.js';
 
-function rerenderPage() {
+export function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
   const htmlCartContainer = document.getElementById('order-summary-js');
   let orderSummaryHTML = '';

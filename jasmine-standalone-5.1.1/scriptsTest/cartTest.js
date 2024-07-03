@@ -1,10 +1,6 @@
 import {
   cart,
   addToCart,
-  removeFromCart,
-  updateProductQuantity,
-  updateDeliveryOption,
-  loadFromStorage,
 } from '../../scripts/cart.js';
 
 // The localStorage should be empty
@@ -29,8 +25,6 @@ describe('test suit: CART ADD ITEMS', () => {
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify([]);
     });
-    // console.log(localStorage.getItem('cart'));
-    // loadFromStorage();
 
     addToCart('54e0eccd-8f36-462b-b68a-8182611d9add');
     expect(cart.length).toEqual(1);

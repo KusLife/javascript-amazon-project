@@ -1,5 +1,5 @@
-import { products } from '../data/products.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
+import { products } from '../../data/products.js';
+import { priceToDecmo } from './priceConvertor.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
 // Slider for ampty cart
