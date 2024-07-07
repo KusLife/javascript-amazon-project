@@ -13,10 +13,10 @@ export function rerenderPage() {
 
   // Looking for matching product and creating a div for choosen item
   function createItemContainer() {
+    // console.log();
     cart.forEach((cartItem) => {
       const productId = cartItem.productId;
       let matchingProduct;
-
       products.forEach((product) => {
         if (product.id === productId) {
           matchingProduct = product;
@@ -51,7 +51,7 @@ export function rerenderPage() {
                 ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  $${priceToDecmo(matchingProduct.priceCents)}
+                  ${matchingProduct.getPrice()}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -133,4 +133,4 @@ export function rerenderPage() {
 ;
 cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage()
 
-// rerenderPage()
+rerenderPage()

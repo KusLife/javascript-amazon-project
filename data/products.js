@@ -1,3 +1,5 @@
+import { priceToDecmo } from "../scripts/utils/priceConvertor.js";
+
 export const deliveryOptions = [
   {
     id: '1',
@@ -18,6 +20,30 @@ export const deliveryOptions = [
     name: '- Express Delivery',
   },
 ];
+
+class Products {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsURL() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png `
+  };
+
+  getPrice() {
+    return `$${priceToDecmo(this.priceCents)}`
+  }
+}
 
 export const products = [
   {
@@ -631,4 +657,6 @@ export const products = [
     priceCents: 2020,
     keywords: ['haipink', 'kaffeebereiter', 'mit', 'pot'],
   },
-];
+].map((productDetails) => {
+  return new Products(productDetails)
+});
