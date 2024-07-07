@@ -1,4 +1,4 @@
-import { priceToDecmo } from "../scripts/utils/priceConvertor.js";
+import { priceToDecmo } from '../scripts/utils/priceConvertor.js';
 
 export const deliveryOptions = [
   {
@@ -37,11 +37,27 @@ class Products {
   }
 
   getStarsURL() {
-    return `images/ratings/rating-${this.rating.stars * 10}.png `
-  };
+    return `images/ratings/rating-${this.rating.stars * 10}.png `;
+  }
 
   getPrice() {
-    return `$${priceToDecmo(this.priceCents)}`
+    return `$${priceToDecmo(this.priceCents)}`;
+  }
+
+  getMoreInfoHtml() {
+    return '';
+  }
+}
+
+class Clothing extends Products {
+  sizeChartLink;
+
+  constructor(clothingDetails) {
+    super(clothingDetails);
+    this.sizeChartLink = `<a href="../${clothingDetails.sizeChartLink}" target="_blank">Size Chart</a>`;
+  }
+  getMoreInfoHtml() {
+    return this.sizeChartLink;
   }
 }
 
@@ -658,5 +674,9 @@ export const products = [
     keywords: ['haipink', 'kaffeebereiter', 'mit', 'pot'],
   },
 ].map((productDetails) => {
-  return new Products(productDetails)
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  } else {
+    return new Products(productDetails);
+  }
 });
