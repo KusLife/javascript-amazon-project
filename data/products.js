@@ -61,6 +61,21 @@ class Clothing extends Products {
   }
 }
 
+class Appliances extends Products {
+  constructor(appliancesInfo) {
+    super(appliancesInfo);
+  }
+
+  getMoreInfoHtml() {
+    return `
+     <a href="images/appliance-instructions.png" target="_black">Instructions</a>
+     <a href="images/appliance-warranty.png" target="_black">Warranty</a>
+    `;
+  }
+}
+
+
+
 export const products = [
   {
     id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
@@ -674,8 +689,13 @@ export const products = [
     keywords: ['haipink', 'kaffeebereiter', 'mit', 'pot'],
   },
 ].map((productDetails) => {
+  // const keywords =  ['toaster', 'kitchen', 'appliances']
+  const keyword =  'appliances'
+   
   if (productDetails.type === 'clothing') {
     return new Clothing(productDetails);
+  } else if (productDetails.keywords.includes(keyword)) {
+    return new Appliances(productDetails)
   } else {
     return new Products(productDetails);
   }

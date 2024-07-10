@@ -1,10 +1,10 @@
 import { addToCart } from './cart.js';
 import { products } from '../data/products.js';
 import { addToCartBtn } from './cartBtns.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
-// import { showCartQuantety } from './checkout.js'
 import { updateCartQuantity } from './updateCartQuantity.js';
+import  './cars.js'
 
+// console.log(cars)
 /* THE element from js with products list for DOM*/
 let productsHTML = '';
 
