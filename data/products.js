@@ -27,6 +27,8 @@ class Products {
   name;
   rating;
   priceCents;
+  type;
+  keywords;
 
   constructor(productDetails) {
     this.id = productDetails.id;
@@ -34,6 +36,8 @@ class Products {
     this.name = productDetails.name;
     this.rating = productDetails.rating;
     this.priceCents = productDetails.priceCents;
+    this.type = productDetails.type;
+    this.keywords = productDetails.keywords;
   }
 
   getStarsURL() {
@@ -74,8 +78,6 @@ class Appliances extends Products {
   }
 }
 
-
-
 export const products = [
   {
     id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
@@ -86,6 +88,8 @@ export const products = [
       count: 87,
     },
     priceCents: 1090,
+    ss: 'as',
+    prices: [1090, 12, 244],
     keywords: ['socks', 'sports', 'apparel'],
   },
   {
@@ -690,12 +694,12 @@ export const products = [
   },
 ].map((productDetails) => {
   // const keywords =  ['toaster', 'kitchen', 'appliances']
-  const keyword =  'appliances'
-   
+  const keyword = 'appliances';
+
   if (productDetails.type === 'clothing') {
     return new Clothing(productDetails);
   } else if (productDetails.keywords.includes(keyword)) {
-    return new Appliances(productDetails)
+    return new Appliances(productDetails);
   } else {
     return new Products(productDetails);
   }

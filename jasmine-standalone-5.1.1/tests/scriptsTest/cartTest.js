@@ -1,7 +1,7 @@
 import {
   cart,
   addToCart,
-} from '../../scripts/cart.js';
+} from '../../../scripts/cart.js';
 
 // The localStorage should be empty
 describe('test suit: CART ADD ITEMS', () => {
