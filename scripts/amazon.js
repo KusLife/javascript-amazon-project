@@ -1,15 +1,17 @@
 import { addToCart } from './cart.js';
-import { products } from '../data/products.js';
+import { getProductsBackend, products } from '../data/products.js';
 import { addToCartBtn } from './cartBtns.js';
 import { updateCartQuantity } from './updateCartQuantity.js';
-import  './cars.js'
+import './cars.js';
+import '../data/backEnd.js';
 
-// console.log(cars)
-/* THE element from js with products list for DOM*/
-let productsHTML = '';
+getProductsBackend(renderAmazonGid);
 
-products.forEach((item) => {
-  productsHTML += `
+function renderAmazonGid() {
+  let productsHTML = '';
+
+  products.forEach((item) => {
+    productsHTML += `
     <div class="product-container">
       <div class="product-image-container">
         <img class="product-image" src="${item.image}" />
@@ -58,24 +60,23 @@ products.forEach((item) => {
       data-product-id="${item.id}">Add to Cart</button>
     </div>
   `;
-});
-//Setting the lits obj as HTML
-document.querySelector('.products-grid').innerHTML = productsHTML;
-
-// const cartAddedActiv = document.querySelectorAll('.added-to-cart')
-
-// Btn that add to the cart all items by id
-document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
-  button.addEventListener('click', () => {
-    const productId = button.dataset.productId;
-    const propductCuantitySelectId = document.querySelector(
-      `.js-cuantity-selectorId-${productId}`
-    );
-    const cuantetyValue = Number(propductCuantitySelectId.value);
-
-    addToCart(productId, cuantetyValue);
-    addToCartBtn(productId);
-    updateCartQuantity();
   });
-});
-updateCartQuantity();
+  //Setting the lits obj as HTML
+  document.querySelector('.products-grid').innerHTML = productsHTML;
+
+  // Btn that add to the cart all items by id
+  document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = button.dataset.productId;
+      const propductCuantitySelectId = document.querySelector(
+        `.js-cuantity-selectorId-${productId}`
+      );
+      const cuantetyValue = Number(propductCuantitySelectId.value);
+
+      addToCart(productId, cuantetyValue);
+      addToCartBtn(productId);
+      updateCartQuantity();
+    });
+  });
+  updateCartQuantity();
+}
