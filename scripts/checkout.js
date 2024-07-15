@@ -3,20 +3,48 @@ import {
   deliveryOptions,
   getProductsBackend,
 } from '../data/products.js';
-import { updateDeliveryOption, cart } from './cart.js';
+import { updateDeliveryOption, loadCartBackend, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
 import rerenderCartAddsSlide from './utils/sladerContainer.js';
 
-getProductsBackend(() => {
-cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
-  // rerenderPage();
-});
+// getProductsBackend(() => {
+//   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
+// });
 
+function showCartOrSlider() {
+  cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
+}
 
+new Promise((resolve) => {
+  getProductsBackend(() => resolve());
+  console.log('checkout page loaded');
+})
+  .then(() => {
+    return new Promise((resolve) => {
+      loadCartBackend(() => resolve());
+    });
+  })
+  .then(() => {
+    showCartOrSlider();
+    console.log('cart or slider');
+  });
+// .then(() => {
+//   console.log('cart from backend');
+//   return loadCartBackend();
+// }).catch((error) => {
+//   console.error('An error', error);
+// })
 
+// .then(() => {
+//   return new Promise((resolve) => {
+//     console.log('cart from backend');
+//     loadCartBackend(() => resolve());
+//   });
+// });
+// loadCartBackend();
 
 export function rerenderPage() {
   // Get an element id that was clicked and add it to the cart

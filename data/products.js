@@ -99,7 +99,7 @@ export function getProductsBackend(fnc) {
       }
     });
     fnc();
-    console.log('First loaded products ');
+    console.log('1 - products loaded!');
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');

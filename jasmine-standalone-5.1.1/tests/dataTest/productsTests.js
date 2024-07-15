@@ -1,6 +1,17 @@
 import { priceToDecmo } from '../../../scripts/utils/priceConvertor.js';
-import { getProductsBackend, products } from '../../../data/products.js'
+import { getProductsBackend, products } from '../../../data/products.js';
 
+// new Promise((resolve) => {
+//   getProductsBackend(() => {
+//     resolve()
+//   })
+// })
+
+// callbacks
+// getProductsBackend(() => {
+//   console.log('shuld be loaded ferst');
+//   tests()
+// });
 
 export const deliveryOptions = [
   {
@@ -31,8 +42,6 @@ class Products {
   priceCents;
   type;
   keywords;
-
-
 
   constructor(productDetails) {
     this.id = productDetails.id;
@@ -82,13 +91,14 @@ class Appliances extends Products {
   }
 }
 
-beforeAll((done) => {
-  getProductsBackend(() => {
-    done()
-    console.log('shuld be loaded ferst');
-  })
-}) 
-
+////  promises
+// new Promise((resolve) => {
+//   getProductsBackend(() => {
+//     resolve()
+//   })
+// }).then(() => {
+// tests()
+// function tests(params) {
 describe('Clothing class', () => {
   it('should create a Clothing instance with a sizeChartLink', () => {
     const clothingDetails = {
@@ -102,33 +112,36 @@ describe('Clothing class', () => {
       priceCents: 799,
       keywords: ['tshirts', 'apparel', 'mens'],
       type: 'clothing',
-      sizeChartLink: 'images/clothing-size-chart.png'
+      sizeChartLink: 'images/clothing-size-chart.png',
     };
-    
+
     const clothing = new Clothing(clothingDetails);
 
     expect(clothing).toBeInstanceOf(Clothing);
-    expect(clothing.sizeChartLink).toBe('<a href="../images/clothing-size-chart.png" target="_blank">Size Chart</a>');
+    expect(clothing.sizeChartLink).toBe(
+      '<a href="../images/clothing-size-chart.png" target="_blank">Size Chart</a>'
+    );
   });
 
   it('should return the correct HTML for size chart link', () => {
     const clothingDetails = {
-      sizeChartLink: 'images/clothing-size-chart.png'
+      sizeChartLink: 'images/clothing-size-chart.png',
     };
     const clothing = new Clothing(clothingDetails);
 
-    expect(clothing.getMoreInfoHtml()).toBe('<a href="../images/clothing-size-chart.png" target="_blank">Size Chart</a>');
+    expect(clothing.getMoreInfoHtml()).toBe(
+      '<a href="../images/clothing-size-chart.png" target="_blank">Size Chart</a>'
+    );
   });
 });
 
 describe('Appliances class', () => {
-
   beforeAll((done) => {
     getProductsBackend(() => {
-      done()
+      done();
       console.log('backend loaded');
-    })
-  })
+    });
+  });
 
   it('should create an Appliances instance', () => {
     const appliancesInfo = {
@@ -140,9 +153,9 @@ describe('Appliances class', () => {
         count: 2197,
       },
       priceCents: 1899,
-      keywords: ['toaster', 'kitchen', 'appliances']
+      keywords: ['toaster', 'kitchen', 'appliances'],
     };
-    
+
     const appliances = new Appliances(appliancesInfo);
 
     expect(appliances).toBeInstanceOf(Appliances);
@@ -160,22 +173,37 @@ describe('Appliances class', () => {
 });
 
 describe('Products data', () => {
-  const product = structuredClone(products[0])
-  it('should have products with valid properties', () => {
-      expect(product.id).toBe('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
-      expect(product.image).toBe('images/products/athletic-cotton-socks-6-pairs.jpg');
-      expect(product.name).toBe('Black and Gray Athletic Cotton Socks - 6 Pairs' );
-      expect(product.rating.stars).toBe(4.5);
-      expect(product.rating.count).toBe(87);
-      expect(product.priceCents).toBe(1090);
-      expect(product.keywords).toEqual(['socks', 'sports', 'apparel']);
+  let product;
+  new Promise((resolve) => {
+    getProductsBackend(() => {
+      resolve();
     });
-    console.log('progucts loaded?');
-    console.log(products);
+  }).then(() => {
+    product = structuredClone(products[0]);
+  });
+
+  // let product = structuredClone(products[0]);
+  it('should have products with valid properties', () => {
+    expect(product.id).toBe('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    expect(product.image).toBe(
+      'images/products/athletic-cotton-socks-6-pairs.jpg'
+    );
+    expect(product.name).toBe('Black and Gray Athletic Cotton Socks - 6 Pairs');
+    expect(product.rating.stars).toBe(4.5);
+    expect(product.rating.count).toBe(87);
+    expect(product.priceCents).toBe(1090);
+    expect(product.keywords).toEqual(['socks', 'sports', 'apparel']);
+  });
+  console.log('progucts loaded?');
+  console.log(products);
   it('should have clothing products with sizeChartLink', () => {
-    const clothingProducts = products.filter(product => product.type === 'clothing');
-    clothingProducts.forEach(product => {
+    const clothingProducts = products.filter(
+      (product) => product.type === 'clothing'
+    );
+    clothingProducts.forEach((product) => {
       expect(product).toBeDefined('sizeChartLink');
     });
   });
 });
+// }
+// })

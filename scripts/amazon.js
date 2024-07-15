@@ -5,7 +5,17 @@ import { updateCartQuantity } from './updateCartQuantity.js';
 import './cars.js';
 import '../data/backEnd.js';
 
-getProductsBackend(renderAmazonGid);
+// // render with callback
+// getProductsBackend(renderAmazonGid);
+
+// render with Promise
+new Promise((resolve) => {
+  getProductsBackend(() => {
+    resolve();
+  });
+}).then(() => {
+  renderAmazonGid()
+})
 
 function renderAmazonGid() {
   let productsHTML = '';

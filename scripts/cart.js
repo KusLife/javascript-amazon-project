@@ -1,5 +1,8 @@
 export let cart;
 
+
+
+
 loadFromStorage();
 
 // check if any item from the list maches the click id and look for cuantity
@@ -104,4 +107,16 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   });
   matchingItem.deliveryOptionId = deliveryOptionId;
   addToStorage();
+}
+
+export function loadCartBackend(fnc) {
+  const xhr = new XMLHttpRequest()
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    fnc()
+  })
+  
+  xhr.open('GET', 'https://supersimplebackend.dev/cart')
+  xhr.send()
 }
