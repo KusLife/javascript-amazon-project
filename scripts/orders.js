@@ -1,14 +1,22 @@
 import ordersData from '../data/ordersData.js';
-import { products } from '../data/products.js';
+import { getProductsBackend, products } from '../data/products.js';
 import { showCartQuantety } from './updateCartQuantity.js';
 
-const ordersHTML = document.querySelector('.js-main-orders');
+// loadProductsBackend(() => {
+//   rerenderOrders()
+// });
 
-// Add main info about the order
-function renderOrderConteiner() {
-  let orderConteinerHTML = '';
-  ordersData.forEach((orderContainer) => {
-    orderConteinerHTML += `
+getProductsBackend(() => {
+loadOrders()
+})
+
+function loadOrders() {
+  const ordersHTML = document.querySelector('.js-main-orders');
+  // Add main info about the order
+  function renderOrderConteiner() {
+    let orderConteinerHTML = '';
+    ordersData.forEach((orderContainer) => {
+      orderConteinerHTML += `
         <div class="order-container">
           
           <div class="order-header">
@@ -35,28 +43,28 @@ function renderOrderConteiner() {
 
         </div>
     `;
-  });
-  return orderConteinerHTML;
-}
-
-function orderDeteils(orderItems) {
-  let orderDeteilsHTML = '';
-  orderItems.forEach((orderItem) => {
-    let orderItemImg = '';
-    let orderItemName = '';
-    let arrivingDate = '';
-    let quantety = '';
-
-    products.forEach((product) => {
-      if (product.id === orderItem.itemID) {
-        orderItemImg = product.image;
-        orderItemName = product.name;
-      }
     });
-    arrivingDate = orderItem.arrivingDate;
-    quantety = orderItem.quantety;
+    return orderConteinerHTML;
+  }
 
-    orderDeteilsHTML += `
+  function orderDeteils(orderItems) {
+    let orderDeteilsHTML = '';
+    orderItems.forEach((orderItem) => {
+      let orderItemImg = '';
+      let orderItemName = '';
+      let arrivingDate = '';
+      let quantety = '';
+
+      products.forEach((product) => {
+        if (product.id === orderItem.itemID) {
+          orderItemImg = product.image;
+          orderItemName = product.name;
+        }
+      });
+      arrivingDate = orderItem.arrivingDate;
+      quantety = orderItem.quantety;
+      // debugger;
+      orderDeteilsHTML += `
       <div class="product-image-container">
               <img src="${orderItemImg}">
             </div>
@@ -84,31 +92,32 @@ function orderDeteils(orderItems) {
                 </button>
               </a>
             </div>`;
-  });
+    });
 
-  return orderDeteilsHTML;
-}
+    return orderDeteilsHTML;
+  }
 
-// Show number of orders
-function numbersOfOrders() {
-  let orderQuantity;
-  orderQuantity = ordersData.length;
-  return orderQuantity;
-}
+  // Show number of orders
+  function numbersOfOrders() {
+    let orderQuantity;
+    orderQuantity = ordersData.length;
+    return orderQuantity;
+  }
 
-// The grid of the page
-const html = `
+  // The grid of the page
+  const html = `
 <div class="page-title">Your Orders: ${numbersOfOrders()} </div>
       <div class="orders-grid">
         ${renderOrderConteiner()}
       </div>
 `;
 
-// Finely set complite container to html
-ordersHTML.innerHTML = html;
-// Show cart quantity
-function showOrderCartQuantety() {
-  document.querySelector('.js-orders-cart-quantity').innerHTML =
-    showCartQuantety();
+  // Finely set complite container to html
+  ordersHTML.innerHTML = html;
+  // Show cart quantity
+  function showOrderCartQuantety() {
+    document.querySelector('.js-orders-cart-quantity').innerHTML =
+      showCartQuantety();
+  }
+  showOrderCartQuantety();
 }
-showOrderCartQuantety();

@@ -1,5 +1,5 @@
 import { priceToDecmo } from '../../../scripts/utils/priceConvertor.js';
-import { products } from '../../../data/products.js'
+import { getProductsBackend, products } from '../../../data/products.js'
 
 
 export const deliveryOptions = [
@@ -82,6 +82,12 @@ class Appliances extends Products {
   }
 }
 
+beforeAll((done) => {
+  getProductsBackend(() => {
+    done()
+    console.log('shuld be loaded ferst');
+  })
+}) 
 
 describe('Clothing class', () => {
   it('should create a Clothing instance with a sizeChartLink', () => {
@@ -116,6 +122,14 @@ describe('Clothing class', () => {
 });
 
 describe('Appliances class', () => {
+
+  beforeAll((done) => {
+    getProductsBackend(() => {
+      done()
+      console.log('backend loaded');
+    })
+  })
+
   it('should create an Appliances instance', () => {
     const appliancesInfo = {
       id: '54e0eccd-8f36-462b-b68a-8182611d9add',
@@ -155,8 +169,9 @@ describe('Products data', () => {
       expect(product.rating.count).toBe(87);
       expect(product.priceCents).toBe(1090);
       expect(product.keywords).toEqual(['socks', 'sports', 'apparel']);
-  });
-
+    });
+    console.log('progucts loaded?');
+    console.log(products);
   it('should have clothing products with sizeChartLink', () => {
     const clothingProducts = products.filter(product => product.type === 'clothing');
     clothingProducts.forEach(product => {

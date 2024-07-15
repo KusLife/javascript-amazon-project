@@ -80,6 +80,10 @@ class Appliances extends Products {
 
 export let products = [];
 
+// export async function loadProductsBackend(params) {
+  
+// }
+
 export function getProductsBackend(fnc) {
   const xhr = new XMLHttpRequest();
 
@@ -95,7 +99,7 @@ export function getProductsBackend(fnc) {
       }
     });
     fnc();
-    console.log(products);
+    console.log('First loaded products ');
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');

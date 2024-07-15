@@ -1,10 +1,22 @@
-import { products, deliveryOptions } from '../data/products.js';
+import {
+  products,
+  deliveryOptions,
+  getProductsBackend,
+} from '../data/products.js';
 import { updateDeliveryOption, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
 import rerenderCartAddsSlide from './utils/sladerContainer.js';
+
+getProductsBackend(() => {
+cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
+  // rerenderPage();
+});
+
+
+
 
 export function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
@@ -23,6 +35,7 @@ export function rerenderPage() {
         }
       });
       orderSummary(matchingProduct, cartItem);
+      // console.log(matchingProduct);
     });
   }
 
@@ -35,7 +48,6 @@ export function rerenderPage() {
       }
       return deliveryDays;
     });
-
     orderSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date js-delivery-date">
@@ -130,7 +142,6 @@ export function rerenderPage() {
   // Readd EventListeners to update & delite btns
   updateQuantityAddEvList();
 }
-;
-cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage()
+// cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
 
-rerenderPage()
+// rerenderPage();
