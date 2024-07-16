@@ -16,8 +16,14 @@ function showCartOrSlider() {
 
 // asynchronius code to render the page
 async function asyncRenderPaga() {
-  await getProductsFetch();
-  showCartOrSlider();
+  try {
+    // throw 'error4'
+    // throw('error4')
+    await getProductsFetch();
+    showCartOrSlider();
+  } catch (error) {
+    console.log('Unexpected error: pleas try again later.');
+  }
 }
 asyncRenderPaga();
 

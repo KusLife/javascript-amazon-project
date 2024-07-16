@@ -96,10 +96,11 @@ export function getProductsFetch() {
           return new Products(productDetails);
         }
       });
+    }).catch((error) => {
+        console.log('Unexpected error: pleas try again later.');
     });
   return productsPromise;
 }
-
 
 /*
 export function getProductsBackend(fnc) {
