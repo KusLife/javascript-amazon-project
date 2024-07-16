@@ -1,16 +1,12 @@
 import { addToCart } from './cart.js';
-import { getProductsBackend, products } from '../data/products.js';
+import { getProductsFetch, products } from '../data/products.js';
 import { addToCartBtn } from './cartBtns.js';
 import { updateCartQuantity } from './updateCartQuantity.js';
 import './cars.js';
 import '../data/backEnd.js';
 
-// render with Promise
-new Promise((resolve) => {
-  getProductsBackend(() => {
-    resolve();
-  });
-}).then(() => {
+// render with "fetch"
+getProductsFetch().then(() => {
   renderAmazonGid()
 })
 

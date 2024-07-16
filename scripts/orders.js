@@ -1,12 +1,9 @@
 import ordersData from '../data/ordersData.js';
-import { getProductsBackend, products } from '../data/products.js';
+import { getProductsFetch, products } from '../data/products.js';
 import { showCartQuantety } from './updateCartQuantity.js';
 
-new Promise((resolve) => {
-  getProductsBackend(() => {
-    resolve()
-  })
-}).then(() => {
+
+getProductsFetch().then(() => {
   loadOrders()
 })
 

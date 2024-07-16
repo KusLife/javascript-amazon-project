@@ -79,7 +79,7 @@ class Appliances extends Products {
 }
 
 export let products = [];
-/*
+
 export function getProductsFetch() {
   const productsPromise = fetch('https://supersimplebackend.dev/products')
     .then((response) => {
@@ -99,8 +99,9 @@ export function getProductsFetch() {
     });
   return productsPromise;
 }
-*/
 
+
+/*
 export function getProductsBackend(fnc) {
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
@@ -121,3 +122,4 @@ export function getProductsBackend(fnc) {
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+*/

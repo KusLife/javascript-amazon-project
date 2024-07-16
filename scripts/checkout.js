@@ -1,9 +1,9 @@
 import {
   products,
   deliveryOptions,
-  getProductsBackend,
+  getProductsFetch,
 } from '../data/products.js';
-import { updateDeliveryOption, loadCartBackend, cart } from './cart.js';
+import { updateDeliveryOption, loadCartFetch, cart } from './cart.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 import { deliveryDateLogic } from './utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
@@ -13,19 +13,13 @@ import rerenderCartAddsSlide from './utils/sladerContainer.js';
 function showCartOrSlider() {
   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
 }
-
-new Promise((resolve) => {
-  getProductsBackend(() => resolve());
-  console.log('checkout page loaded');
-})
+// fetching
+getProductsFetch()
   .then(() => {
-    return new Promise((resolve) => {
-      loadCartBackend(() => resolve());
-    });
+    loadCartFetch();
   })
   .then(() => {
     showCartOrSlider();
-    console.log('cart or slider');
   });
 
 export function rerenderPage() {
