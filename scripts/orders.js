@@ -2,12 +2,12 @@ import ordersData from '../data/ordersData.js';
 import { getProductsBackend, products } from '../data/products.js';
 import { showCartQuantety } from './updateCartQuantity.js';
 
-// loadProductsBackend(() => {
-//   rerenderOrders()
-// });
-
-getProductsBackend(() => {
-loadOrders()
+new Promise((resolve) => {
+  getProductsBackend(() => {
+    resolve()
+  })
+}).then(() => {
+  loadOrders()
 })
 
 function loadOrders() {

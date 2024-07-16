@@ -10,10 +10,6 @@ import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
 import rerenderCartAddsSlide from './utils/sladerContainer.js';
 
-// getProductsBackend(() => {
-//   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
-// });
-
 function showCartOrSlider() {
   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
 }
@@ -31,20 +27,6 @@ new Promise((resolve) => {
     showCartOrSlider();
     console.log('cart or slider');
   });
-// .then(() => {
-//   console.log('cart from backend');
-//   return loadCartBackend();
-// }).catch((error) => {
-//   console.error('An error', error);
-// })
-
-// .then(() => {
-//   return new Promise((resolve) => {
-//     console.log('cart from backend');
-//     loadCartBackend(() => resolve());
-//   });
-// });
-// loadCartBackend();
 
 export function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
@@ -53,7 +35,6 @@ export function rerenderPage() {
 
   // Looking for matching product and creating a div for choosen item
   function createItemContainer() {
-    // console.log();
     cart.forEach((cartItem) => {
       const productId = cartItem.productId;
       let matchingProduct;
@@ -63,7 +44,6 @@ export function rerenderPage() {
         }
       });
       orderSummary(matchingProduct, cartItem);
-      // console.log(matchingProduct);
     });
   }
 
@@ -170,6 +150,3 @@ export function rerenderPage() {
   // Readd EventListeners to update & delite btns
   updateQuantityAddEvList();
 }
-// cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
-
-// rerenderPage();

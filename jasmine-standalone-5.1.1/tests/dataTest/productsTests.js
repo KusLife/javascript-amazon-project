@@ -1,18 +1,6 @@
 import { priceToDecmo } from '../../../scripts/utils/priceConvertor.js';
 import { getProductsBackend, products } from '../../../data/products.js';
 
-// new Promise((resolve) => {
-//   getProductsBackend(() => {
-//     resolve()
-//   })
-// })
-
-// callbacks
-// getProductsBackend(() => {
-//   console.log('shuld be loaded ferst');
-//   tests()
-// });
-
 export const deliveryOptions = [
   {
     id: '1',
@@ -91,14 +79,7 @@ class Appliances extends Products {
   }
 }
 
-////  promises
-// new Promise((resolve) => {
-//   getProductsBackend(() => {
-//     resolve()
-//   })
-// }).then(() => {
-// tests()
-// function tests(params) {
+
 describe('Clothing class', () => {
   it('should create a Clothing instance with a sizeChartLink', () => {
     const clothingDetails = {
@@ -182,7 +163,6 @@ describe('Products data', () => {
     product = structuredClone(products[0]);
   });
 
-  // let product = structuredClone(products[0]);
   it('should have products with valid properties', () => {
     expect(product.id).toBe('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
     expect(product.image).toBe(
@@ -205,5 +185,3 @@ describe('Products data', () => {
     });
   });
 });
-// }
-// })

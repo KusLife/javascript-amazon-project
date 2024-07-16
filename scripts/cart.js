@@ -1,8 +1,5 @@
 export let cart;
 
-
-
-
 loadFromStorage();
 
 // check if any item from the list maches the click id and look for cuantity
@@ -11,36 +8,12 @@ export function loadFromStorage() {
 
   if (!cart) {
     cart = [];
-    // cart = [
-    //   {
-    //     productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
-    //     cuantety: 3,
-    //     deliveryOptionId: '1',
-    //   },
-    //   {
-    //     productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d',
-    //     cuantety: 2,
-    //     deliveryOptionId: '2',
-    //   },
-    // ];
-
-    // alert('No cart items yet')
   }
 }
 
 function addToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
-
-/* Filter out any undefined or invalid items in the cart
- const validCartItems = cart.filter((item) => {
-   if (!item || !item.productId) {
-     console.error('Invalid item encountered:', item);
-     localStorage.clear();
-     return false;
-   }
-   return true;
- }); */
 
 export function addToCart(productId, cuantetyValue) {
   let matchingItem;
@@ -110,13 +83,13 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 }
 
 export function loadCartBackend(fnc) {
-  const xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', () => {
     console.log(xhr.response);
-    fnc()
-  })
-  
-  xhr.open('GET', 'https://supersimplebackend.dev/cart')
-  xhr.send()
+    fnc();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
 }
