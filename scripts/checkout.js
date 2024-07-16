@@ -13,14 +13,22 @@ import rerenderCartAddsSlide from './utils/sladerContainer.js';
 function showCartOrSlider() {
   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();
 }
-// fetching
-getProductsFetch()
-  .then(() => {
-    loadCartFetch();
-  })
-  .then(() => {
-    showCartOrSlider();
-  });
+
+// asynchronius code to render the page
+async function asyncRenderPaga() {
+  await getProductsFetch();
+  showCartOrSlider();
+}
+asyncRenderPaga();
+
+// 'fetching' and 'then' to get & render the page
+// getProductsFetch()
+//   .then(() => {
+//     loadCartFetch();
+//   })
+//   .then(() => {
+//     showCartOrSlider();
+//   });
 
 export function rerenderPage() {
   // Get an element id that was clicked and add it to the cart
