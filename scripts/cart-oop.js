@@ -9,12 +9,12 @@
       // cart = [
       //   {
       //     productId: '54e0eccd-8f36-462b-b68a-8182611d9add',
-      //     cuantety: 3,
+      //     quantity: 3,
       //     deliveryOptionId: '1',
       //   },
       //   {
       //     productId: 'dd82ca78-a18b-4e2a-9250-31e67412f98d',
-      //     cuantety: 2,
+      //     quantity: 2,
       //     deliveryOptionId: '2',
       //   },
       // ];
@@ -27,7 +27,7 @@
     localStorage.setItem('cart-oop', JSON.stringify(this.cartItems));
   },
 
-  addToCart(productId, cuantetyValue) {
+  addToCart(productId, quantityValue) {
     let matchingItem;
     this.cartItems.forEach((cartItem) => {
       if (productId === cartItem.productId) {
@@ -36,12 +36,12 @@
     });
     if (matchingItem) {
       // Update the quantity of the matching item
-      matchingItem.cuantety += cuantetyValue;
+      matchingItem.quantity += quantityValue;
     } else {
       // Add a new item to the cart
       this.cartItems.push({
         productId: productId,
-        cuantety: cuantetyValue,
+        quantity: quantityValue,
         deliveryOptionId: '1',
       });
     }
@@ -57,8 +57,8 @@
     this.cartItems.forEach((product) => {
       if (product.productId !== productId) {
         newCart.push(product);
-      } else if (product.productId === productId && product.cuantety > 1) {
-        product.cuantety--;
+      } else if (product.productId === productId && product.quantity > 1) {
+        product.quantity--;
         newCart.push(product);
       } else {
         container.remove();
@@ -75,7 +75,7 @@
       if (product.productId !== productId) {
         newCart.push(product);
       } else if (product.productId === productId) {
-        product.cuantety++;
+        product.quantity++;
         newCart.push(product);
       }
     });

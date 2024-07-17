@@ -15,6 +15,7 @@ function showCartOrSlider() {
 }
 
 // asynchronius code to render the page
+// 'try/catch' handle errors
 async function asyncRenderPaga() {
   try {
     // throw 'error4'
@@ -84,7 +85,7 @@ export function rerenderPage() {
                 <div class="product-quantity">
                   <span>
                     Quantity: <span class="quantity-label js-quantity-label">${
-                      cartItem.cuantety
+                      cartItem.quantity
                     }</span>
                   </span>
                   <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id='${

@@ -1,18 +1,19 @@
 import { cart } from './cart.js';
 
 export function updateCartQuantity() {
-  let cartCuantety = 0;
+  let cartQuantity = 0;
   cart.forEach((cartItem) => {
-    cartCuantety += cartItem.cuantety;
+    // debugger
+    cartQuantity += cartItem.quantity;
   });
-  document.querySelector('.js-cart-cuantety').innerHTML = cartCuantety;
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 }
 
 export function showCartQuantety() {
-  let quantety = 0;
+  let quantity = 0;
   cart.forEach((cartItem) => {
-    quantety += cartItem.cuantety;
+    quantity += cartItem.quantity;
   });
-  return quantety;
+  return quantity;
 }
 showCartQuantety();

@@ -60,7 +60,6 @@ function loadOrders() {
       });
       arrivingDate = orderItem.arrivingDate;
       quantety = orderItem.quantety;
-      // debugger;
       orderDeteilsHTML += `
       <div class="product-image-container">
               <img src="${orderItemImg}">

@@ -35,7 +35,7 @@ function renderAmazonGid() {
       <div class="product-price">${item.getPrice()}</div>
 
       <div class="product-quantity-container">
-        <select class="js-cuantity-selectorId-${item.id}">
+        <select class="js-quantity-selectorId-${item.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -72,11 +72,11 @@ function renderAmazonGid() {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
       const propductCuantitySelectId = document.querySelector(
-        `.js-cuantity-selectorId-${productId}`
+        `.js-quantity-selectorId-${productId}`
       );
-      const cuantetyValue = Number(propductCuantitySelectId.value);
+      const quantityValue = Number(propductCuantitySelectId.value);
 
-      addToCart(productId, cuantetyValue);
+      addToCart(productId, quantityValue);
       addToCartBtn(productId);
       updateCartQuantity();
     });

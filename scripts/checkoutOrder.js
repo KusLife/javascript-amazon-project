@@ -19,7 +19,7 @@ function orderProductsArr() {
     orderCartItems.push({
       itemID: item.productId,
       arrivingDate: date,
-      quantety: item.cuantety,
+      quantety: item.quantity,
     });
   });
   return orderCartItems;

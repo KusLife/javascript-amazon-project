@@ -85,28 +85,11 @@ export function cartItemsPriceCaunter() {
   and removing the 'cart' from 'localStorage'
   */
   paymentSummaryDom.innerHTML = orderSummaryHTML;
-  /*
-    Get and an 'EventListener' to 'Place Your Order' Btn
-    and save it to 'localStorage'
-  */
-  const placeOrderButton = document.querySelector('.js-place-order-button');
+  const placeOrderButton = document
+    .querySelector('.js-place-order-button');
 
-  placeOrderButton.addEventListener('click', async () => {
-    const placeOrderPromis = await fetch(
-      'https://supersimplebackend.dev/orders',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({cart: cart}),
-      }
-    );
+    placeOrderButton.addEventListener('click', () => {
 
-    const order = await placeOrderPromis.json()
-    console.log(order);
-
-    /*
       if (cart.length === 0) {
         placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!'
         placeOrderButton.classList.add('js-place-order-button-red')
@@ -114,7 +97,8 @@ export function cartItemsPriceCaunter() {
         placeOrder(summaryTotal)
         window.location.href = 'orders.html'
       }
-      */
-  });
+      
+    });
 }
 cartItemsPriceCaunter();
+

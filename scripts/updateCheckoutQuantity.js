@@ -9,7 +9,7 @@ export function rerenderItemQuantityHTML(productID) {
   const newQuantity = itemQuantityParent.querySelector('.js-quantity-label');
   cart.forEach((product) => {
     if (product.productId === productID) {
-      newQuantity.innerText = product.cuantety;
+      newQuantity.innerText = product.quantity;
     }
   });
 }
