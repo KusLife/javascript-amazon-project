@@ -37,10 +37,11 @@ function rerenderCartAddsSlide() {
   sladerContainer.innerHTML = html;
   const swiper = new Swiper('.swiper', {
     // Optional parameters
-    parallax:true,
+    parallax: true,
     direction: 'horizontal',
     loop: true,
-    initialSlide: 4,
+    // initialSlide: 3,
+    slidesPerView: 3,
     centeredSlides: true,
     slidesPerView: 'auto',
     spaceBetween: 14,
