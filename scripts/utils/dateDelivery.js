@@ -6,3 +6,10 @@ export function deliveryDateLogic(deliveryDays) {
   const deliveryDate = today.add(deliveryDays, 'days').format('dddd, MMMM D');
   return deliveryDate;
 }
+export function deliveryDateForamt(delivery) {
+  const date = dayjs(delivery);
+  const deliveryDate = date.format('dddd, MMMM D');
+  return deliveryDate;
+}
+
+// format('DD/MM/YYYY')

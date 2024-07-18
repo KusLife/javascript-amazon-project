@@ -106,15 +106,27 @@ export function cartItemsPriceCaunter() {
     const order = await placeOrderPromis.json()
     console.log(order);
 
-    /*
+    /*      */
+
       if (cart.length === 0) {
         placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!'
         placeOrderButton.classList.add('js-place-order-button-red')
       } else if (cart.length > 0) {
-        placeOrder(summaryTotal)
+        placeOrder(order)
         window.location.href = 'orders.html'
       }
-      */
   });
+
+
+   
 }
+
+// delite
 cartItemsPriceCaunter();
+async function getOrdersFromBack() {
+    // const promiseOrders = await fetch('https://supersimplebackend.dev/orders').then((response) => {
+    //   return console.log(response.json());
+    // })
+  }
+
+  getOrdersFromBack()

@@ -1,18 +1,19 @@
 import ordersData from '../data/ordersData.js';
 import { getProductsFetch, products } from '../data/products.js';
 import { showCartQuantety } from './updateCartQuantity.js';
-
+import { deliveryDateForamt, deliveryDateLogic } from './utils/dateDelivery.js';
+import { priceToDecmo } from './utils/priceConvertor.js';
 
 getProductsFetch().then(() => {
-  loadOrders()
-})
+  loadOrders();
+});
 
 function loadOrders() {
   const ordersHTML = document.querySelector('.js-main-orders');
   // Add main info about the order
   function renderOrderConteiner() {
     let orderConteinerHTML = '';
-    ordersData.forEach((orderContainer) => {
+    ordersData.forEach((orderInfo) => {
       orderConteinerHTML += `
         <div class="order-container">
           
@@ -20,46 +21,48 @@ function loadOrders() {
             <div class="order-header-left-section">
               <div class="order-date">
                 <div class="order-header-label">Order Placed:</div>
-                <div>${orderContainer.orderPlaced}</div>
+                <div>${deliveryDateForamt(orderInfo.orderTime)}</div>
               </div>
               <div class="order-total">
                 <div class="order-header-label">Total:</div>
-                <div>$${orderContainer.TotalPrice}</div>
+                <div>$${priceToDecmo(orderInfo.totalCostCents)}</div>
               </div>
             </div>
 
             <div class="order-header-right-section">
               <div class="order-header-label">Order ID:</div>
-              <div>${orderContainer.orderID}</div>
+              <div>${orderInfo.id}</div>
             </div>
           </div>
 
-          <div class="order-details-grid">
-            ${orderDeteils(orderContainer.itemsCart)}
+          <div class="order-details-grid"/>
+           ${orderDeteils(orderInfo.products)}
           </div>
-
-        </div>
-    `;
+          
+          </div>
+          `;
     });
     return orderConteinerHTML;
   }
 
-  function orderDeteils(orderItems) {
+  function orderDeteils(orderProducts) {
     let orderDeteilsHTML = '';
-    orderItems.forEach((orderItem) => {
+    orderProducts.forEach((orderItem) => {
+      console.log(orderItem);
+      // debugger
       let orderItemImg = '';
       let orderItemName = '';
       let arrivingDate = '';
-      let quantety = '';
+      let quantity = '';
 
       products.forEach((product) => {
-        if (product.id === orderItem.itemID) {
+        if (product.id === orderItem.productId) {
           orderItemImg = product.image;
           orderItemName = product.name;
         }
       });
-      arrivingDate = orderItem.arrivingDate;
-      quantety = orderItem.quantety;
+      arrivingDate = orderItem.estimatedDeliveryTime;
+      quantity = orderItem.quantity;
       orderDeteilsHTML += `
       <div class="product-image-container">
               <img src="${orderItemImg}">
@@ -70,10 +73,10 @@ function loadOrders() {
                 ${orderItemName}
               </div>
               <div class="product-delivery-date">
-                Arriving on: ${arrivingDate}
+                Arriving on: ${deliveryDateForamt(arrivingDate)}
               </div>
               <div class="product-quantity">
-                Quantity: ${quantety}
+                Quantity: ${quantity}
               </div>
               <button class="buy-again-button button-primary">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
