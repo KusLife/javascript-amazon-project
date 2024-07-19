@@ -34,6 +34,7 @@ export function addToCart(productId, quantityValue) {
     });
   }
   addToStorage();
+  
 }
 
 // Removing from the cart an obj

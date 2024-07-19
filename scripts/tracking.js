@@ -8,8 +8,7 @@ getProductsFetch().then(() => {
 });
 
 const trackingHTML = document.querySelector('.js-main');
-const trackingCartQuantityHTML = document.querySelector('.js-cart-quantity');
-trackingCartQuantityHTML.innerText = showCartQuantety()
+const trackingCartQuantityHTML = document.querySelector('.js-track-cart-quantity').innerText = showCartQuantety()
 
 export function trackingContainer() {
   const url = new URL(window.location.href);
@@ -28,10 +27,10 @@ export function trackingContainer() {
 
       order.products.forEach((orderItem) => {
         productDeliveryTime = deliveryDateForamt(
-          ordersData.estimatedDeliveryTime
+          orderItem.estimatedDeliveryTime
         );
-        productQuantity = orderItem.quantity;
         if (orderItem.productId === productIdURL) {
+          productQuantity = orderItem.quantity;
           // console.log(3);
 
           products.forEach((product) => {

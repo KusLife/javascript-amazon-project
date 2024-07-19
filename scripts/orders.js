@@ -1,7 +1,9 @@
 import ordersData from '../data/ordersData.js';
 import { getProductsFetch, products } from '../data/products.js';
+import { addToCart } from './cart.js';
+import { addToCartBtn } from './cartBtns.js';
 import { showCartQuantety } from './updateCartQuantity.js';
-import { deliveryDateForamt, deliveryDateLogic } from './utils/dateDelivery.js';
+import { deliveryDateForamt } from './utils/dateDelivery.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
 getProductsFetch().then(() => {
@@ -78,15 +80,24 @@ function loadOrders() {
               <div class="product-quantity">
                 Quantity: ${quantity}
               </div>
-              <button class="buy-again-button button-primary">
+              <div class="added-to-cart" id="${orderItem.productId}">
+                <img src="images/icons/checkmark.png" />
+                Added
+              </div>
+              
+              <button class="buy-again-button button-primary js-buy-again-button"
+              data-product-id="${orderItem.productId}">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
                 <span class="buy-again-message">Buy it again</span>
               </button>
+              
             </div>
 
             <div class="product-actions">
 
-              <a href="tracking.html?orderId=${orderId}&productId=${orderItem.productId}">
+              <a href="tracking.html?orderId=${orderId}&productId=${
+        orderItem.productId
+      }">
 
                 <button class="track-package-button button-secondary">
                   Track package
@@ -121,4 +132,14 @@ function loadOrders() {
       showCartQuantety();
   }
   showOrderCartQuantety();
+
+  // Add to cart an item from 'orders'
+  const buyAgainBtn = document.querySelectorAll('.js-buy-again-button');
+  buyAgainBtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      addToCart(btn.dataset.productId, 1);
+      addToCartBtn(btn.dataset.productId)
+      showOrderCartQuantety();
+    });
+  });
 }

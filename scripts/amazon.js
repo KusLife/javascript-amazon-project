@@ -1,14 +1,16 @@
 import { addToCart } from './cart.js';
 import { getProductsFetch, products } from '../data/products.js';
 import { addToCartBtn } from './cartBtns.js';
-import { updateCartQuantity } from './updateCartQuantity.js';
+import { showCartQuantety, updateCartQuantity } from './updateCartQuantity.js';
 import './cars.js';
-import '../data/backEnd.js';
 
 // render with "fetch"
 getProductsFetch().then(() => {
   renderAmazonGid()
 })
+
+const cartQuantityHTML =  document.querySelector('.js-cart-quantity').innerHTML = showCartQuantety();
+
 
 function renderAmazonGid() {
   let productsHTML = '';

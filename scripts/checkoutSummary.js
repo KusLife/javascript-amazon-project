@@ -1,7 +1,7 @@
 import { cart } from './cart.js';
 import { deliveryOptions, products } from '../data/products.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
-import { showCartQuantety } from './updateCartQuantity.js';
+import { allItemsQuantity, showCartQuantety } from './updateCartQuantity.js';
 import { placeOrder } from './checkoutOrder.js';
 
 const paymentSummaryDom = document.querySelector('.js-payment-summary');
@@ -48,7 +48,7 @@ export function cartItemsPriceCaunter() {
           </div>
 
           <div class="payment-summary-row js-payment-summary-items">
-            <div>Items (${showCartQuantety()}):</div>
+            <div>Items (${allItemsQuantity()}):</div>
             <div class="payment-summary-money js-payment-summary-money">$${summaryNoTax}</div>
           </div>
 
