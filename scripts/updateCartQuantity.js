@@ -1,9 +1,9 @@
 import { cart } from './cart.js';
 
+// add one item
 export function updateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((cartItem) => {
-    // debugger
     cartQuantity += cartItem.quantity;
   });
   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;

@@ -36,7 +36,7 @@ function loadOrders() {
           </div>
 
           <div class="order-details-grid"/>
-           ${orderDeteils(orderInfo.products)}
+           ${orderDeteils(orderInfo.products, orderInfo.id)}
           </div>
           
           </div>
@@ -45,10 +45,10 @@ function loadOrders() {
     return orderConteinerHTML;
   }
 
-  function orderDeteils(orderProducts) {
+  function orderDeteils(orderProducts, orderId) {
     let orderDeteilsHTML = '';
     orderProducts.forEach((orderItem) => {
-      console.log(orderItem);
+      // console.log(orderItem);
       // debugger
       let orderItemImg = '';
       let orderItemName = '';
@@ -85,7 +85,9 @@ function loadOrders() {
             </div>
 
             <div class="product-actions">
-              <a href="tracking.html">
+
+              <a href="tracking.html?orderId=${orderId}&productId=${orderItem.productId}">
+
                 <button class="track-package-button button-secondary">
                   Track package
                 </button>
