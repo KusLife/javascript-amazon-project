@@ -2,15 +2,21 @@ import { addToCart } from './cart.js';
 import { getProductsFetch, products } from '../data/products.js';
 import { addToCartBtn } from './cartBtns.js';
 import { showCartQuantety, updateCartQuantity } from './updateCartQuantity.js';
-import './cars.js';
+// import './cars.js';
+import searchAmazonProducts from './amazon-search.js';
 
 // render with "fetch"
 getProductsFetch().then(() => {
-  renderAmazonGid()
-})
+  renderAmazonGid();
+});
 
-const cartQuantityHTML =  document.querySelector('.js-cart-quantity').innerHTML = showCartQuantety();
+const cartQuantityHTML = (document.querySelector(
+  '.js-cart-quantity'
+).innerHTML = showCartQuantety());
 
+const productsGrid = document.querySelector('.products-grid');
+const productsBoxName = productsGrid.getElementsByClassName('product-name');
+const searchBar = document.querySelector('.js-search-bar');
 
 function renderAmazonGid() {
   let productsHTML = '';
@@ -67,8 +73,7 @@ function renderAmazonGid() {
   `;
   });
   //Setting the lits obj as HTML
-  document.querySelector('.products-grid').innerHTML = productsHTML;
-
+  productsGrid.innerHTML = productsHTML;
   // Btn that add to the cart all items by id
   document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
     button.addEventListener('click', () => {
@@ -84,4 +89,5 @@ function renderAmazonGid() {
     });
   });
   updateCartQuantity();
+  searchAmazonProducts(searchBar, productsBoxName);
 }
