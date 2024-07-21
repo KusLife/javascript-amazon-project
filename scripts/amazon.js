@@ -10,15 +10,17 @@ getProductsFetch().then(() => {
   renderAmazonGid();
 });
 
-const cartQuantityHTML = (document.querySelector(
-  '.js-cart-quantity'
-).innerHTML = showCartQuantety());
-
-const productsGrid = document.querySelector('.products-grid');
-const productsBoxName = productsGrid.getElementsByClassName('product-name');
-const searchBar = document.querySelector('.js-search-bar');
-
 function renderAmazonGid() {
+  // Fnc render html obj of 'cart quantity
+  const cartQuantityHTML = () =>
+    (document.querySelector('.js-cart-quantity').innerHTML =
+      showCartQuantety());
+  cartQuantityHTML();
+
+  const productsGrid = document.querySelector('.products-grid');
+  const productsBoxName = productsGrid.getElementsByClassName('product-name');
+  const searchBar = document.querySelector('.js-search-bar');
+
   let productsHTML = '';
 
   products.forEach((item) => {
@@ -86,6 +88,7 @@ function renderAmazonGid() {
       addToCart(productId, quantityValue);
       addToCartBtn(productId);
       updateCartQuantity();
+      cartQuantityHTML();
     });
   });
   updateCartQuantity();

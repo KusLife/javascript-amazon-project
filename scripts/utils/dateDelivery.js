@@ -1,26 +1,7 @@
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+// import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import dayjs from 'https://cdn.jsdelivr.net/npm/dayjs@1.11.12/+esm'
+ 
 
-const extr = () => {
-  let n = 5;
-  console.log(n);
-  let n2 = 0;
-
-  function showN(num) {
-    console.log(num);
-    num += 2;
-    console.log(num);
-    n2 = n + 2;
-    console.log(n);
-    n += 1;
-  }
-  showN(n);
-  console.log(n);
-
-  (() => {
-    console.log(n2);
-  })();
-};
-// extr()
 
 // Get a numbres of days and show when the item arive
 // and check if it is not a weakend day
@@ -45,7 +26,42 @@ export function deliveryDateLogic(deliveryDays) {
 export function deliveryDateForamt(delivery) {
   const date = dayjs(delivery);
   const deliveryDate = date.format('dddd, MMMM D');
+  // console.log(dayjs().format('DD/MM/YYYY'));
   return deliveryDate;
 }
 
+
+export function orderStatusDateCheck(estimatedDeliveryTime) {
+  // const today = dayjs()
+  // const orderDate = '7/12/2024'
+  const orderDate = estimatedDeliveryTime
+
+  // const todayDate = dayjs(today ,'DD/MM/YYYY')
+  // const todayDate = dayjs(today ,'MM/DD/YYYY')
+  const deliveryDate = dayjs(orderDate ,'MM/DD/YYYY')
+  const isAfterDate = dayjs().isAfter(deliveryDate)
+  let isIshued = false
+  let orderState = ''
+
+  // console.log(todayDate, 'should be delivered at ', deliveryDate);
+  // console.log(isAfterDate);
+
+  if (isAfterDate && !isIshued) {
+    console.log('delivered');
+    orderState = 'delivered'
+  } else if (isIshued) {
+    orderState = 'order ishued'
+    console.log('order ishued');
+  } else {
+    orderState = 'in progres'
+    console.log('in progres');
+  }
+
+  return orderState
+}
 // as well may be used format('DD/MM/YYYY')
+// orderStatusDateCheck()
+
+ 
+
+

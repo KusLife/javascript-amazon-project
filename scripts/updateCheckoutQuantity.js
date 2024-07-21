@@ -6,6 +6,10 @@ export function rerenderItemQuantityHTML(productID) {
   const itemQuantityParent = document.querySelector(
     `.js-cart-item-container-${productID}`
   );
+  // Prevent an error in console if null
+  if (!itemQuantityParent) {
+    return 
+  }  
   const newQuantity = itemQuantityParent.querySelector('.js-quantity-label');
   cart.forEach((product) => {
     if (product.productId === productID) {

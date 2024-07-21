@@ -138,8 +138,38 @@ function loadOrders() {
   buyAgainBtn.forEach((btn) => {
     btn.addEventListener('click', () => {
       addToCart(btn.dataset.productId, 1);
-      addToCartBtn(btn.dataset.productId)
+      addToCartBtn(btn.dataset.productId);
       showOrderCartQuantety();
     });
   });
+
+
+  
+
+  const ordersStatusCheckbox = document.querySelectorAll('.filter-checkbox');
+  ordersStatusCheckbox.forEach((checkbox) => {
+    checkbox.addEventListener('click', () => {
+      console.log(checkbox.checked);
+      console.log(checkbox.className);
+    });
+  });
 }
+
+/* 
+css when srinck to mobile size text removes
+and stay icons
+
+class .hiden{
+display: hiden;
+}
+
+logic for marck up orders states in colors as the icons 
+with shadow and header background
+
+fnc that check atual date and compare it to the order's
+
+'if' will check if there is any order in choosen category
+if yes then hide all others 
+if no such then will be 'disabeld'
+
+*/
