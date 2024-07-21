@@ -84,20 +84,23 @@ export function rerenderPage() {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label js-quantity-label">${
-                      cartItem.quantity
-                    }</span>
+                    Quantity:
+                    <span class="delete-quantity-link link-primary js-delete-link" data-product-id='${
+                      matchingProduct.id
+                    }'>
+                      &minus;
+                    </span>
+                      
+                    <span class="quantity-label js-quantity-label">
+                      ${cartItem.quantity}</span>
+                    </span>
+
+                   <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id='${
+                      matchingProduct.id
+                    }'>
+                    &plus;
                   </span>
-                  <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id='${
-                    matchingProduct.id
-                  }'>
-                    Update
-                  </span>
-                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id='${
-                    matchingProduct.id
-                  }'>
-                    Delete
-                  </span>
+                  
                 </div>
               </div>
 
