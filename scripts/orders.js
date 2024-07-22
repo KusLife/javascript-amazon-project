@@ -3,7 +3,10 @@ import { getProductsFetch, products } from '../data/products.js';
 import { addToCart } from './cart.js';
 import { addToCartBtn } from './cartBtns.js';
 import { showCartQuantety } from './updateCartQuantity.js';
-import { deliveryDateForamt } from './utils/dateDelivery.js';
+import {
+  deliveryDateForamt,
+  orderStatusDateCheck,
+} from './utils/dateDelivery.js';
 import { priceToDecmo } from './utils/priceConvertor.js';
 
 getProductsFetch().then(() => {
@@ -37,11 +40,11 @@ function loadOrders() {
             </div>
           </div>
 
-          <div class="order-details-grid"/>
+          <div class="order-details-grid">
            ${orderDeteils(orderInfo.products, orderInfo.id)}
           </div>
           
-          </div>
+        </div>
           `;
     });
     return orderConteinerHTML;
@@ -66,7 +69,10 @@ function loadOrders() {
       arrivingDate = orderItem.estimatedDeliveryTime;
       quantity = orderItem.quantity;
       orderDeteilsHTML += `
-      <div class="product-image-container">
+      
+      
+       <div class="product-container">
+            <div class="product-image-container">
               <img src="${orderItemImg}">
             </div>
 
@@ -75,7 +81,9 @@ function loadOrders() {
                 ${orderItemName}
               </div>
               <div class="product-delivery-date">
-                Arriving on: ${deliveryDateForamt(arrivingDate)}
+                Arriving on: <span class="product-delivery-status">${deliveryDateForamt(
+                  arrivingDate
+                )}</span>
               </div>
               <div class="product-quantity">
                 Quantity: ${quantity}
@@ -96,17 +104,19 @@ function loadOrders() {
             <div class="product-actions">
 
               <a href="tracking.html?orderId=${orderId}&productId=${
-        orderItem.productId
-      }">
+                  orderItem.productId
+               }">
 
                 <button class="track-package-button button-secondary">
                   Track package
                 </button>
               </a>
+              
+              </div>
             </div>`;
-    });
-
-    return orderDeteilsHTML;
+            });
+            
+            return orderDeteilsHTML;
   }
 
   // Show number of orders
@@ -143,14 +153,41 @@ function loadOrders() {
     });
   });
 
+  // Get prouct date and check it if delivered add color
+  const productsStates = document.querySelectorAll('.product-delivery-status');
+  productsStates.forEach((state) => {
+    const statusClass = orderStatusDateCheck(state.innerText);
+    state.classList.add(statusClass);
+  });
 
-  
+  function filterProducts(name, isChecked) {}
+  // Filtering produts by the date if delivered or in progres
+  const filterProductsStates = productsStates;
+  filterProductsStates.forEach((filterStates) => {
+    const parent = filterStates.parentElement.parentElement.parentElement;
+    const isInclude = filterStates.className.includes('progres');
+    let isChecked = true;
+    // let isChecked = isChecked
+    console.log(isChecked);
+    console.log(parent);
 
+    if (isInclude && isChecked) {
+      parent.classList.remove('hiden');
+      console.log('remove hiden');
+    } else {
+      parent.classList.add('hiden');
+      console.log('added hiden');
+    }
+  });
+  // Check what isChecked and pass it father to invico 'filter'
   const ordersStatusCheckbox = document.querySelectorAll('.filter-checkbox');
   ordersStatusCheckbox.forEach((checkbox) => {
     checkbox.addEventListener('click', () => {
-      console.log(checkbox.checked);
-      console.log(checkbox.className);
+      const name = checkbox.names;
+
+      // filterProducts(name, checkbox.checked)
+      // console.log(checkbox.checked);
+      // console.log(checkbox.className);
     });
   });
 }
