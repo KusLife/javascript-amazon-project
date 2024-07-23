@@ -13,10 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Load icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Here are the CSS files for this page. -->
     <link rel="stylesheet" href="styles/shared/general.css">
     <link rel="stylesheet" href="styles/shared/amazon-header.css">
     <link rel="stylesheet" href="styles/pages/orders.css">
+
   </head>
   <body>
     <div class="amazon-header">
@@ -29,22 +33,27 @@
         </a>
       </div>
 
-      <!-- <div class="amazon-header-middle-section">
-        <input class="search-bar" type="text" placeholder="Search">
+      <label class="custom-checkbox checkbox-lable">
+        <input type="checkbox" class="filter-checkbox in-progres" name="progres"  value="in-progres">
+        <i class="fa-solid fa-ship unchecked-icon"></i>
+        <i class="fa-solid fa-ship checked-icon"></i>
+        Shipt
+      </label>
 
-        <button class="search-button">
-          <img class="search-icon" src="images/icons/search-icon.png">
-        </button>
-      </div> -->
-      
-      <label class="checkbox-lable" for="Progres">
-        <input type="checkbox" class="filter-checkbox in-progres" name="progres" title="Progres">In Progres
+
+      <label class="custom-checkbox checkbox-lable">
+        <input type="checkbox" class="filter-checkbox delivered" name="delivered" value="delivered">
+        <i class="fa-solid fa-house unchecked-icon"></i>
+        <i class="fa-solid fa-house checked-icon"></i>
+        Delivered
       </label>
-      <label class="checkbox-lable" for="Delivered">
-        <input type="checkbox" class="filter-checkbox delivered" name="delivered" title="Delivered">Delivered
-      </label>
-      <label class="checkbox-lable" for="Ishued">
-        <input type="checkbox" class="filter-checkbox ishued" name="ishued" title="Ishued">Ishued
+
+      <label class="custom-checkbox checkbox-lable">
+        <input type="checkbox" class="filter-checkbox ishued" name="ishued" title="Ishued" value="ishued">
+        <i class="fa-solid fa-circle-exclamation unchecked-icon"></i>
+        
+        <i class="fa-solid fa-circle-exclamation checked-icon"></i>
+        Ishued
       </label>
 
       <div class="amazon-header-right-section">
@@ -64,10 +73,6 @@
     <div class="main js-main-orders">
     </div>
 
-<!-- 
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
-    <script>dayjs.extend(window.dayjs_plugin_utc)</script> -->
     <script src="./scripts/orders.js" type="module"></script>
 
   </body>

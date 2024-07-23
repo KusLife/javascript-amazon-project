@@ -34,20 +34,13 @@ export function deliveryDateForamt(delivery) {
 
 
 export function orderStatusDateCheck(estimatedDeliveryTime, ishue) {
-  // const today = dayjs()
-  // const orderDate = '7/12/2024'
-  // const orderDate = estimatedDeliveryTime
-
-  // const todayDate = dayjs(today ,'DD/MM/YYYY')
-  // const todayDate = dayjs(today ,'MM/DD/YYYY')
+ 
   const deliveryDate = dayjs(estimatedDeliveryTime ,'MM/DD/YYYY')
   const isAfterDate = dayjs().isAfter(deliveryDate)
   let isIshued = false
   let orderState = ''
 
-  // console.log(todayDate, 'should be delivered at ', deliveryDate);
-  // console.log(isAfterDate);
-  // console.log(deliveryDate);
+  
 
   if (isAfterDate && !isIshued) {
     // console.log('delivered');
@@ -56,7 +49,7 @@ export function orderStatusDateCheck(estimatedDeliveryTime, ishue) {
     orderState = 'ishued'
     // console.log('order ishued');
   } else {
-    orderState = 'progres'
+    orderState = 'in-progres'
     // console.log('in progres');
   }
 

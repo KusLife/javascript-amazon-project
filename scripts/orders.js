@@ -104,8 +104,8 @@ function loadOrders() {
             <div class="product-actions">
 
               <a href="tracking.html?orderId=${orderId}&productId=${
-                  orderItem.productId
-               }">
+        orderItem.productId
+      }">
 
                 <button class="track-package-button button-secondary">
                   Track package
@@ -114,9 +114,9 @@ function loadOrders() {
               
               </div>
             </div>`;
-            });
-            
-            return orderDeteilsHTML;
+    });
+
+    return orderDeteilsHTML;
   }
 
   // Show number of orders
@@ -153,43 +153,48 @@ function loadOrders() {
     });
   });
 
-  // Get prouct date and check it if delivered add color
+  // Filer, show or hide shoosen products 
   const productsStates = document.querySelectorAll('.product-delivery-status');
+  const ordersStatusCheckbox = document.querySelectorAll('.filter-checkbox');
+
+  // Get prouct date and check it if delivered add color
   productsStates.forEach((state) => {
     const statusClass = orderStatusDateCheck(state.innerText);
     state.classList.add(statusClass);
+    state.dataset.status = statusClass;
   });
-
-  function filterProducts(name, isChecked) {}
-  // Filtering produts by the date if delivered or in progres
-  const filterProductsStates = productsStates;
-  filterProductsStates.forEach((filterStates) => {
-    const parent = filterStates.parentElement.parentElement.parentElement;
-    const isInclude = filterStates.className.includes('progres');
-    let isChecked = true;
-    // let isChecked = isChecked
-    console.log(isChecked);
-    console.log(parent);
-
-    if (isInclude && isChecked) {
-      parent.classList.remove('hiden');
-      console.log('remove hiden');
-    } else {
-      parent.classList.add('hiden');
-      console.log('added hiden');
-    }
-  });
-  // Check what isChecked and pass it father to invico 'filter'
-  const ordersStatusCheckbox = document.querySelectorAll('.filter-checkbox');
+// By togoling live only needed products
   ordersStatusCheckbox.forEach((checkbox) => {
-    checkbox.addEventListener('click', () => {
-      const name = checkbox.names;
+    checkbox.addEventListener('change', () => {
+      const selectedStatuses = Array.from(ordersStatusCheckbox)
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value);
 
-      // filterProducts(name, checkbox.checked)
-      // console.log(checkbox.checked);
-      // console.log(checkbox.className);
+      productsStates.forEach((product) => {
+        const productContainer =
+          product.parentElement.parentElement.parentElement;
+        if (selectedStatuses.length === 0) {
+          productContainer.style.display = 'grid';
+        } else {
+          if (selectedStatuses.includes(product.dataset.status)) {
+            productContainer.style.display = 'grid';
+          } else {
+            productContainer.style.display = 'none';
+          }
+        }
+      });
     });
   });
+
+  /*
+  // May be used for addional customisation
+  document.querySelectorAll('.custom-checkbox input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', (event) => {
+      console.log(`${event.target.name} is now ${event.target.checked ? 'checked' : 'unchecked'}`);
+    });
+  });
+  */
+
 }
 
 /* 
