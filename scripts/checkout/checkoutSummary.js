@@ -1,7 +1,7 @@
-import { cart } from './cart.js';
-import { deliveryOptions, products } from '../data/products.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
-import { allItemsQuantity, showCartQuantety } from './updateCartQuantity.js';
+import { cart } from '../cart/cart.js';
+import { deliveryOptions, products } from '../../data/products.js';
+import { priceToDecmo } from '../utils/priceConvertor.js';
+import { allItemsQuantity } from '../cart/updateCartQuantity.js';
 import { placeOrder } from './checkoutOrder.js';
 
 const paymentSummaryDom = document.querySelector('.js-payment-summary');
@@ -92,6 +92,15 @@ export function cartItemsPriceCaunter() {
   const placeOrderButton = document.querySelector('.js-place-order-button');
 
   placeOrderButton.addEventListener('click', async () => {
+    if (cart.length === 0) {
+      placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!';
+      placeOrderButton.classList.add('js-place-order-button-red');
+      return
+    } else if (cart.length > 0) {
+      placeOrder(order);
+      window.location.href = 'orders.html';
+    }
+
     const placeOrderPromis = await fetch(
       'https://supersimplebackend.dev/orders',
       {
@@ -99,34 +108,22 @@ export function cartItemsPriceCaunter() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({cart: cart}),
+        body: JSON.stringify({ cart: cart }),
       }
     );
 
-    const order = await placeOrderPromis.json()
-    console.log(order);
-
-    /*      */
-
-      if (cart.length === 0) {
-        placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!'
-        placeOrderButton.classList.add('js-place-order-button-red')
-      } else if (cart.length > 0) {
-        placeOrder(order)
-        window.location.href = 'orders.html'
-      }
+    const order = await placeOrderPromis.json();
   });
-
-
-   
 }
 
-// delite
 cartItemsPriceCaunter();
-async function getOrdersFromBack() {
-    // const promiseOrders = await fetch('https://supersimplebackend.dev/orders').then((response) => {
-    //   return console.log(response.json());
-    // })
-  }
 
-  getOrdersFromBack()
+/*
+async function getOrdersFromBack() {
+  const promiseOrders = await fetch('https://supersimplebackend.dev/orders').then((response) => {
+    return console.log(response.json());
+  })
+}
+
+getOrdersFromBack();
+*/

@@ -1,4 +1,4 @@
-import ordersData from '../data/ordersData.js';
+import ordersData from '../../data/ordersData.js';
 
 // Save an 'ordersData' to the localSt and remove the 'cart'
 export function placeOrder(order) {

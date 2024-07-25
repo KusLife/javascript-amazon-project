@@ -2,13 +2,13 @@ import {
   products,
   deliveryOptions,
   getProductsFetch,
-} from '../data/products.js';
-import { updateDeliveryOption, loadCartFetch, cart } from './cart.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
-import { deliveryDateLogic } from './utils/dateDelivery.js';
+} from '../../data/products.js';
+import { updateDeliveryOption, loadCartFetch, cart } from '../cart/cart.js';
+import { priceToDecmo } from '../utils/priceConvertor.js';
+import { deliveryDateLogic } from '../utils/dateDelivery.js';
 import { updateQuantityAddEvList } from './updateCheckoutQuantity.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
-import rerenderCartAddsSlide from './utils/sladerContainer.js';
+import rerenderCartAddsSlide from '../utils/sladerContainer.js';
 
 function showCartOrSlider() {
   cart.length === 0 ? rerenderCartAddsSlide() : rerenderPage();

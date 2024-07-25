@@ -1,7 +1,7 @@
-import ordersData from '../data/ordersData.js';
-import { getProductsFetch, products } from '../data/products.js';
-import { showCartQuantety } from './updateCartQuantity.js';
-import { deliveryDateForamt } from './utils/dateDelivery.js';
+import ordersData from '../../data/ordersData.js';
+import { getProductsFetch, products } from '../../data/products.js';
+import { showCartQuantety } from '../cart/updateCartQuantity.js';
+import { deliveryDateForamt } from '../utils/dateDelivery.js';
 
 getProductsFetch().then(() => {
   trackingContainer();

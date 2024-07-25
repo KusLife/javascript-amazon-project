@@ -96,5 +96,3 @@
 };
 
 cart.loadFromStorage();
-
-// console.log(cart);

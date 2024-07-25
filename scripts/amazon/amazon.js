@@ -1,7 +1,10 @@
-import { addToCart } from './cart.js';
-import { getProductsFetch, products } from '../data/products.js';
-import { addToCartBtn } from './cartBtns.js';
-import { showCartQuantety, updateCartQuantity } from './updateCartQuantity.js';
+import { addToCart } from '../cart/cart.js';
+import { getProductsFetch, products } from '../../data/products.js';
+import { addToCartBtn } from '../cart/cartBtns.js';
+import {
+  showCartQuantety,
+  updateCartQuantity,
+} from '../cart/updateCartQuantity.js';
 // import './cars.js';
 import searchAmazonProducts from './amazon-search.js';
 

@@ -1,8 +1,8 @@
-import { deliveryDateLogic } from './utils/dateDelivery.js';
-import ordersData from '../data/ordersData.js';
+import { deliveryDateLogic } from '../utils/dateDelivery.js';
+import ordersData from '../../data/ordersData.js';
 import { cart } from './cart.js';
-import { deliveryOptions } from '../data/products.js';
-import { generateUUID } from './utils/generateUUID.js';
+import { deliveryOptions } from '../../data/products.js';
+import { generateUUID } from '../utils/generateUUID.js';
 
 // Create an 'arr' with cart products but save it to 'ordersData'
 function orderProductsArr() {

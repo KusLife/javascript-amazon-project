@@ -37,7 +37,7 @@
         <input type="checkbox" class="filter-checkbox in-progres" name="progres"  value="in-progres">
         <i class="fa-solid fa-ship unchecked-icon"></i>
         <i class="fa-solid fa-ship checked-icon"></i>
-        Shipt
+        <span>Shipt</span>
       </label>
 
 
@@ -45,15 +45,14 @@
         <input type="checkbox" class="filter-checkbox delivered" name="delivered" value="delivered">
         <i class="fa-solid fa-house unchecked-icon"></i>
         <i class="fa-solid fa-house checked-icon"></i>
-        Delivered
+        <span>Delivered</span>
       </label>
 
       <label class="custom-checkbox checkbox-lable">
         <input type="checkbox" class="filter-checkbox ishued" name="ishued" title="Ishued" value="ishued">
         <i class="fa-solid fa-circle-exclamation unchecked-icon"></i>
-        
         <i class="fa-solid fa-circle-exclamation checked-icon"></i>
-        Ishued
+        <span>Issue</span>
       </label>
 
       <div class="amazon-header-right-section">
@@ -73,7 +72,8 @@
     <div class="main js-main-orders">
     </div>
 
-    <script src="./scripts/orders.js" type="module"></script>
+    <script src="./scripts/orders/orders.js" type="module"></script>
+    <script src="./scripts/orders/orderFilter.js" type="module"></script>
 
   </body>
 </html>

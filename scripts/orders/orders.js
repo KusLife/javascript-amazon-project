@@ -1,13 +1,14 @@
-import ordersData from '../data/ordersData.js';
-import { getProductsFetch, products } from '../data/products.js';
-import { addToCart } from './cart.js';
-import { addToCartBtn } from './cartBtns.js';
-import { showCartQuantety } from './updateCartQuantity.js';
+import ordersData from '../../data/ordersData.js';
+import { getProductsFetch, products } from '../../data/products.js';
+import { addToCart } from '../cart/cart.js';
+import { addToCartBtn } from '../cart/cartBtns.js';
+import { showCartQuantety } from '../cart/updateCartQuantity.js';
 import {
   deliveryDateForamt,
+  deliveryIsWeekend,
   orderStatusDateCheck,
-} from './utils/dateDelivery.js';
-import { priceToDecmo } from './utils/priceConvertor.js';
+} from '../utils/dateDelivery.js';
+import { priceToDecmo } from '../utils/priceConvertor.js';
 
 getProductsFetch().then(() => {
   loadOrders();
@@ -66,8 +67,10 @@ function loadOrders() {
           orderItemName = product.name;
         }
       });
-      arrivingDate = orderItem.estimatedDeliveryTime;
+      arrivingDate = deliveryIsWeekend(
+         orderItem.estimatedDeliveryTime);
       quantity = orderItem.quantity;
+      
       orderDeteilsHTML += `
       
       
@@ -81,9 +84,8 @@ function loadOrders() {
                 ${orderItemName}
               </div>
               <div class="product-delivery-date">
-                Arriving on: <span class="product-delivery-status">${deliveryDateForamt(
-                  arrivingDate
-                )}</span>
+                Arriving on: <span class="product-delivery-status">${arrivingDate
+                 }</span>
               </div>
               <div class="product-quantity">
                 Quantity: ${quantity}
@@ -153,7 +155,7 @@ function loadOrders() {
     });
   });
 
-  // Filer, show or hide shoosen products 
+  // Filer, show or hide shoosen products
   const productsStates = document.querySelectorAll('.product-delivery-status');
   const ordersStatusCheckbox = document.querySelectorAll('.filter-checkbox');
 
@@ -163,7 +165,7 @@ function loadOrders() {
     state.classList.add(statusClass);
     state.dataset.status = statusClass;
   });
-// By togoling live only needed products
+  // By togoling live only needed products
   ordersStatusCheckbox.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const selectedStatuses = Array.from(ordersStatusCheckbox)
@@ -194,24 +196,4 @@ function loadOrders() {
     });
   });
   */
-
 }
-
-/* 
-css when srinck to mobile size text removes
-and stay icons
-
-class .hiden{
-display: hiden;
-}
-
-logic for marck up orders states in colors as the icons 
-with shadow and header background
-
-fnc that check atual date and compare it to the order's
-
-'if' will check if there is any order in choosen category
-if yes then hide all others 
-if no such then will be 'disabeld'
-
-*/

@@ -290,6 +290,10 @@
     flex-direction: column;
   }
 
+  .custom-checkbox span{
+    display: none;
+  }
+
   .buy-again-button {
     margin-bottom: 10px;
   }

@@ -103,6 +103,8 @@ export function getProductsFetch() {
 }
 
 /*
+// Get data with 'XMLHR'
+
 export function getProductsBackend(fnc) {
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {

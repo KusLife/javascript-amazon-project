@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateProductQuantity } from './cart.js';
+import { cart, removeFromCart, updateProductQuantity } from '../cart/cart.js';
 import { cartItemsPriceCaunter } from './checkoutSummary.js';
 
 // Rerender quantity in html
@@ -8,8 +8,8 @@ export function rerenderItemQuantityHTML(productID) {
   );
   // Prevent an error in console if null
   if (!itemQuantityParent) {
-    return 
-  }  
+    return;
+  }
   const newQuantity = itemQuantityParent.querySelector('.js-quantity-label');
   cart.forEach((product) => {
     if (product.productId === productID) {
