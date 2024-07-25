@@ -1,47 +1,45 @@
 import ordersData from '../../data/ordersData.js';
 import { getProductsFetch, products } from '../../data/products.js';
 import { showCartQuantety } from '../cart/updateCartQuantity.js';
-import { deliveryDateForamt } from '../utils/dateDelivery.js';
+import { calculateDeliveryProgress, deliveryDateForamt } from '../utils/dateDelivery.js';
 
 getProductsFetch().then(() => {
   trackingContainer();
 });
 
 const trackingHTML = document.querySelector('.js-main');
-const trackingCartQuantityHTML = document.querySelector('.js-track-cart-quantity').innerText = showCartQuantety()
+const trackingCartQuantityHTML = (document.querySelector(
+  '.js-track-cart-quantity'
+).innerText = showCartQuantety());
 
 export function trackingContainer() {
   const url = new URL(window.location.href);
   const orderIdURL = url.searchParams.get('orderId');
   const productIdURL = url.searchParams.get('productId');
+  
   let productDeliveryTime = '';
   let productQuantity = 0;
   let productName = '';
   let productIMG = '';
+  let startDate = ''
+  let estimatedDeliveryDate = ''
 
   ordersData.forEach((order) => {
-    // console.log(1);
-
     if (orderIdURL === order.id) {
-      // console.log(2);
-
+      startDate = order.orderTime
       order.products.forEach((orderItem) => {
         productDeliveryTime = deliveryDateForamt(
           orderItem.estimatedDeliveryTime
         );
+        estimatedDeliveryDate = orderItem.estimatedDeliveryTime
         if (orderItem.productId === productIdURL) {
           productQuantity = orderItem.quantity;
-          // console.log(3);
-
           products.forEach((product) => {
             if (product.id === productIdURL) {
-              // console.log(4);
-
               productName = product.name;
               productIMG = product.image;
             }
           });
-          // console.log(5);
           const html = `
             <div class="order-tracking">
               <a class="back-to-orders-link link-primary" href="orders.html">
@@ -75,7 +73,7 @@ export function trackingContainer() {
               </div>
 
               <div class="progress-bar-container">
-                <div class="progress-bar"></div>
+                <div class="progress-bar" style='width:${calculateDeliveryProgress(startDate, estimatedDeliveryDate)}%;'></div>
               </div>
             </div>
 
@@ -86,4 +84,5 @@ export function trackingContainer() {
       });
     }
   });
+ 
 }

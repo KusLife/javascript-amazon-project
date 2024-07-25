@@ -20,15 +20,15 @@ export function deliveryDateLogic(deliveryDays) {
 
 // Func remove weekends in a different way
 export function deliveryIsWeekend(stringDate) {
-  let date = dayjs(stringDate)
+  let date = dayjs(stringDate);
   const day = date.day();
 
   if (day === 0) {
-    date = date.add(1, 'day')
+    date = date.add(1, 'day');
   } else if (day === 6) {
-    date = date.add(2, 'day')
+    date = date.add(2, 'day');
   }
-  
+
   return date.format('dddd, MM/DD/YYYY');
 }
 
@@ -56,4 +56,14 @@ export function orderStatusDateCheck(estimatedDeliveryTime, ishue) {
   return orderState;
 }
 // as well may be used format('DD/MM/YYYY')
-// console.log(orderStatusDateCheck('7/22/2024'))
+// Function to calculate the percentage of delivery time
+export function calculateDeliveryProgress(startDate, estimatedDeliveryDate) {
+  const start = dayjs(startDate);
+  const estimatedDelivery = dayjs(estimatedDeliveryDate);
+  const today = dayjs();
+  const totalDeliveryTime = estimatedDelivery.diff(start, 'day');
+  const elapsedDeliveryTime = today.diff(start, 'day');
+  const percentage = (elapsedDeliveryTime / totalDeliveryTime) * 100 ? 
+  (elapsedDeliveryTime / totalDeliveryTime) * 100 : 10.00 
+  return Math.min(Math.max(percentage, 0), 100).toFixed(2);
+}
