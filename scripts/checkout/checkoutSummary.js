@@ -96,12 +96,17 @@ export function cartItemsPriceCaunter() {
       placeOrderButton.innerText = 'NO PRODUCTS IN THE CART TO PLACE AN ORDER!';
       placeOrderButton.classList.add('js-place-order-button-red');
       return
-    } else if (cart.length > 0) {
-      placeOrder(order);
-      window.location.href = 'orders.html';
-    }
+    } 
+    
+  let placeOrderPromis;
+  let order;
+    
+    if (cart.length > 0) {
+      // placeOrder(order);
+      // window.location.href = 'orders.html';
 
-    const placeOrderPromis = await fetch(
+      
+   placeOrderPromis = await fetch(
       'https://supersimplebackend.dev/orders',
       {
         method: 'POST',
@@ -112,7 +117,17 @@ export function cartItemsPriceCaunter() {
       }
     );
 
-    const order = await placeOrderPromis.json();
+    }
+
+   order = await placeOrderPromis.json();
+
+    if (order) {
+      placeOrder(order);
+      window.location.href = 'orders.html';
+    } else {
+      placeOrderButton.innerText = 'ORDER FAILED!';
+      placeOrderButton.classList.add('js-place-order-button-red');
+    }
   });
 }
 
