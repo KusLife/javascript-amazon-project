@@ -58,7 +58,7 @@ class Clothing extends Products {
 
   constructor(clothingDetails) {
     super(clothingDetails);
-    this.sizeChartLink = `<a href="../${clothingDetails.sizeChartLink}" target="_blank">Size Chart</a>`;
+    this.sizeChartLink = `<a href="${clothingDetails.sizeChartLink}" target="_blank">Size Chart</a>`;
   }
   getMoreInfoHtml() {
     return this.sizeChartLink;
